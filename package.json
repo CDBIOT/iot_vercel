@@ -12,10 +12,12 @@
     "mqtt": "^4.3.7",
     "mqtt-react-hooks": "^3.0.0-alpha.2",
     "react": "^18.2.0",
+    "react-app-rewired": "^2.2.1",
     "react-dom": "^18.2.0",
     "react-google-charts": "^4.0.0",
     "react-router-dom": "^6.14.1",
     "react-scripts": "5.0.1",
+    "stream-browserify": "^3.0.0",
     "url": "^0.11.1",
     "web-vitals": "^2.1.4"
   },
