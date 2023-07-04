@@ -19,7 +19,14 @@ const [ano, setAno] = useState()// eslint-disable-next-line
 
 
 const Dados = async () => {
-	await Axios.get('https://test-no-vercel.vercel.app/temps')
+	const options = { 
+	'Access-Control-Allow-Origin':'*',
+	method: 'GET',	
+	mode: 'cors',
+	cache: 'default',
+	'Content-Type': 'application/json'}
+	
+	await Axios.get('https://test-no-vercel.vercel.app/temps',options)
 	 .then((response)=> {setData(response.data.temps);
 	console.log(response.data)
 	});

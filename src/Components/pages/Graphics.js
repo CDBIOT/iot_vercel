@@ -22,12 +22,14 @@ function Graphics(){
 
 
 async function getData(){
-    //fetch ( 'https://7uz6ugr7q6.execute-api.sa-east-1.amazonaws.com/dev',{ // fetch addres for aws api
-     fetch(`https://test-no-vercel.vercel.app/temps`,{
-      method: 'GET',
-      header: { 'Access-Control-Allow-Origin':'*',mode: 'cors',
-        'Content-Type': 'application/json' },
-     }).then(resp=>resp.json())
+    const options = { 
+        'Access-Control-Allow-Origin':'*',
+        method: 'GET',	
+        mode: 'cors',
+        cache: 'default',
+        'Content-Type': 'application/json'}
+     fetch(`https://test-no-vercel.vercel.app/temps`,options)
+     .then(resp=>resp.json())
  	.then((data)=>{ setTemperaturas(data.temps)
      console.log(data.temps)
      }).catch(err=> console.log(err))
