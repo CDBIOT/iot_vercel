@@ -22,7 +22,7 @@ const Dados = async () => {
 	const options = { 
 	'Access-Control-Allow-Origin':'*',
 	method: 'GET',	
-	mode: 'cors',
+	mode: 'no-cors',
 	cache: 'default',
 	'Content-Type': 'application/json'}
 	
