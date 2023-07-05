@@ -26,7 +26,8 @@ const Dados = async () => {
 	cache: 'default',
 	'Content-Type': 'application/json'}
 	
-	await Axios.get('https://test-no-vercel.vercel.app/temps',options)
+	await Axios.get('api/temps')
+	//await Axios.get('https://test-no-vercel.vercel.app/temps',options)
 	 .then((response)=> {setData(response.data.temps);
 	console.log(response.data)
 	});

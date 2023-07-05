@@ -29,7 +29,7 @@ async function getData(){
         cache: 'default',
         'Content-Type': 'application/json'}
      fetch(`https://test-no-vercel.vercel.app/temps`,options)
-     .then(resp=>resp.json())
+    .then(resp=>resp.json())
  	.then((data)=>{ setTemperaturas(data.temps)
      console.log(data.temps)
      }).catch(err=> console.log(err))
