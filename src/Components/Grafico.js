@@ -14,8 +14,17 @@ const [startDate,setstartDate] =useState()
 const [finalDate,setfinalDate] =useState()
 
 useEffect(() => {
+
+
+const options = { 
+        'Access-Control-Allow-Origin':'*',
+        method: 'GET',	
+        mode: 'no-cors',
+        cache: 'default',
+        'Content-Type': 'application/json'}
+
     Axios.get({
-	  	url: 'https://test-no-vercel.vercel.app/temps'
+	  	url: 'https://test-no-vercel.vercel.app/temps',options
 		})
     .then((response) =>{
     setTemperaturas(response.data.temps);

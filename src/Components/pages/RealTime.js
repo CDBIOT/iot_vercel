@@ -28,12 +28,14 @@ function RealTime(){
 
 async function DrawTable(){
         //Obtem dados do banco de dados
+const options = { 
+          'Access-Control-Allow-Origin':'*',
+          method: 'GET',	
+          mode: 'no-cors',
+          cache: 'default',
+          'Content-Type': 'application/json'}
 
-     fetch(`https://test-no-vercel.vercel.app/temps`,{
-      method: 'GET',
-      header: {'Access-Control-Allow-Origin':'*',mode: 'cors',
-        'Content-Type': 'application/json' },
-     }).then(resp=>resp.json())
+     fetch(`https://test-no-vercel.vercel.app/temps`,options).then(resp=>resp.json())
  	    .then((data)=>{
  	    setTemperaturas(data.temps)
        console.log(data.tempes)
