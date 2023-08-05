@@ -27,7 +27,7 @@ useEffect(() => {
 
 const handleChange = (e) => {
     e.preventDefault()
-    setData(e.targe.value)
+    setData(e.target.value)
 }
 
 return(
