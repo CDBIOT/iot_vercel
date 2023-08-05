@@ -35,8 +35,9 @@ const options = {
           cache: 'default',
           'Content-Type': 'application/json'}
 
-     fetch(`https://test-no-vercel.vercel.app/temps`,options).then(resp=>resp.json())
- 	    .then((data)=>{
+     fetch(`https://test-no-vercel.vercel.app/temps`,options)
+     .then(resp=>resp.json())
+ 	  .then((data)=>{
  	    setTemperaturas(data.temps)
        console.log(data.tempes)
       }).catch(err=> console.log(err))
