@@ -25,7 +25,7 @@ async function getData(){
     const options = { 
         'Access-Control-Allow-Origin':'*',
         method: 'GET',	
-        mode: 'no-cors',
+        mode: 'cors',
         cache: 'default',
         'Content-Type': 'application/json'}
 
