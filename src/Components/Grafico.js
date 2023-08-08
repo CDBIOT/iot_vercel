@@ -13,8 +13,43 @@ const [data, setData] = useState('')
 const [startDate,setstartDate] =useState()
 const [finalDate,setfinalDate] =useState()
 
-useEffect(() => {
+async function Graf()
+{
 
+  const options = {
+    method: 'GET',
+    mode: 'cors',
+    cache: 'default'
+                   }
+  fetch('https://polar-beyond-82520.herokuapp.com/temps')
+  .then(function (response){
+    return response.text()})
+    .then(data=>{
+    const myObj = JSON.parse(data);
+    var dataArray = Array.from(myObj.temps);
+    console.log("dataArray: ", dataArray)
+
+    var dataArray2=[];
+
+    dataArray2.push(['Dia','Temp']);
+
+    for (var i in dataArray)
+    {
+        dataArray2.push([dataArray[i].dia, (dataArray[i].temperatura)]);
+    }
+
+}
+)
+
+}
+useEffect(() => {
+Graf()
+    
+}, []);
+
+
+
+useEffect(() => {
 
 const options = { 
         'Access-Control-Allow-Origin':'*',
@@ -33,6 +68,8 @@ const options = {
     }
 });
 }, []);
+
+
 
 const handleChange = (e) => {
     e.preventDefault()
