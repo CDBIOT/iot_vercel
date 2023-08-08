@@ -61,15 +61,16 @@ return(
               </div>
           </form>
           
-      </section>
-
-<Chart 
+    <Chart 
 	    chartType="AreaChart"
 	    width = "400"
 	    height= "300"
 	    data = {data}
 	    options= {options}
-	 />
+	 /> 
+          
+      </section>
+
 </>
 
 )
