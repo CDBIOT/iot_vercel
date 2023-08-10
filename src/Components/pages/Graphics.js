@@ -46,6 +46,7 @@ useEffect(() => {
 return (
     <>
     <h1>Graphics</h1>
+    <Grafico/>
 <table>
 <th colspan = {4}> <h1> Selecione o período </h1></th>
 <tr>
