@@ -11,14 +11,25 @@ function Graphics(){
     const [temps, setTemperaturas] = useState([])
     const [initDate, setInitDate] = useState()
     const [finalDate, setFinalDate] = useState()
+    const [initMonthy, setInitMonthy] = useState()
+    const [finalMonthy, setFinalMonthy] = useState()
+    
 
     const startDate = moment(initDate).format("DD");
     const startDay = parseInt(startDate)
     const endDate = moment(finalDate).format("DD");
     const endDay = parseInt(endDate)
+
+    const startMonthy = moment(initMonthy).format("MM");
+    const startMont = parseInt(startMonthy)
+    const endMonthy = moment(finalMonthy).format("MM");
+    const endMont = parseInt(endMonthy)
     
     const temp = temps.filter(temper =>  temper.dia  >= startDay )
     const temp2 = temp.filter(temper =>  temper.dia  <= endDay )
+
+    const temp3 = temp2.filter(temperM =>  temperM.mes  >= startMont )
+    const temp4 = temp3.filter(temperM =>  temperM.mes  <= endMont )
 
 
 async function getData(){
@@ -51,11 +62,12 @@ return (
 <th colspan = {4}> <h1> Selecione o período </h1></th>
 <tr>
     <td>
-        <h2 for="initDate" className="label">Data início:  {startDate}</h2>
+        <h2 for="initDate" className="label">Data início:  {startDate} "/" {startMont} </h2>
+     
         <input id="initDate" value={initDate}  type="date" onChange={(e)=>setInitDate(e.target.value)}  name="initDate" /></td>
         <td> </td>
     <td>
-        <h2  for="finalDate" className="label">Data Final:  {endDate} </h2>
+        <h2  for="finalDate" className="label">Data Final:  {endDate}  / {endMont} </h2>
         <input id="finalDate" value={finalDate}  type="date" onChange={(e)=>setFinalDate(e.target.value)}  name="finalDate" /></td>
         <td></td> 
 </tr>
@@ -74,7 +86,7 @@ return (
     </div>
         <tbody className={styles.tbody}>
         {temps.length >0 ? (
-        temp2.map((t, i) => (
+        temp4.map((t, i) => (
         <tr key = {i}>
         <td width="20%"className={styles.td}>{t.temperatura}</td>
         <td width="20%"className={styles.td}>{t.local}</td>
