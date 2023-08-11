@@ -25,10 +25,12 @@ function Graphics(){
     const startMont = parseInt(startMonthy)
     const endMonthy = moment(finalMonthy).format("MM");
     const endMont = parseInt(endMonthy)
-    
+
+    //filtragem por dia escolhido
     const temp = temps.filter(temper =>  temper.dia  >= startDay )
     const temp2 = temp.filter(temper =>  temper.dia  <= endDay )
 
+    //filtragem por mês escolhido
     const temp3 = temp2.filter(temperM =>  temperM.mes  >= startMont )
     const temp4 = temp3.filter(temperM =>  temperM.mes  <= endMont )
 
@@ -81,13 +83,14 @@ return (
 <tr>
     <td>
         <h2 for="initDate" className="label">Data início:  {startDate} / {startMont} </h2>
-     
         <input id="initDate" value={initDate}  type="date" onChange={(e)=>setInitDate(e.target.value)}  name="initDate" />
+        <h2  for="finalMonthy" className="label"> {startMont} </h2>
         <input id="initMonthy" value={initMonthy}  type="date" onChange={(e)=>setInitMonthy(e.target.value)}  name="initMonthy" /></td>
         <td> </td>
     <td>
         <h2  for="finalDate" className="label">Data Final:  {endDate} / {endMont} </h2>
         <input id="finalDate" value={finalDate}  type="date" onChange={(e)=>setFinalDate(e.target.value)}  name="finalDate" />
+        <h2  for="finalMonthy" className="label"> {endMont} </h2>
         <input id="finalMonthy" value={finalMonthy}  type="date" onChange={(e)=>setFinalMonthy(e.target.value)}  name="finalMonthy" /></td>
         <td></td> 
 </tr>
