@@ -19,10 +19,11 @@ async function mqtt_show() {
     mode: 'cors',
     cache: 'default',
     'Content-Type': 'application/json'}
+
     fetch(('https://test-no-vercel.vercel.app/mqtt'),options)
 	.then(response => response.json())
 	.then(data=>{
-    setData(data)
+    setData(data.vm.dia)
 	console.log("dia: " ,data.vm.dia)
 }).catch(err=> console.log(err))
 }
