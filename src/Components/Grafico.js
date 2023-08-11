@@ -21,7 +21,7 @@ async function Graf()
     mode: 'cors',
     cache: 'default'
                    }
-  fetch('https://polar-beyond-82520.herokuapp.com/temps')
+  fetch('https://test-no-vercel.vercel.app/temps')
   .then(function (response){
     return response.text()})
     .then(data=>{
@@ -102,7 +102,7 @@ return(
 	    chartType="AreaChart"
 	    width = "400"
 	    height= "300"
-	    data = {dataArray2}
+	    data = {data}
 	    options= {options}
 	 /> 
           

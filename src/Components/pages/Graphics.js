@@ -52,7 +52,17 @@ async function getData(){
 useEffect(() => {
     getData();
     }, [])
-    
+
+
+const [options, setOptions] = useState({
+        title: 'Gráfico de Pizza'
+      })
+      const [data, setData] = useState([
+        ['Linguagens', 'Quantidade'],
+        ['React', 100],
+        ['Angula', 80],
+        ['Vue', 50],
+      ])
 
 
 return (
