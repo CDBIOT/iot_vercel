@@ -80,13 +80,15 @@ return (
 <th colspan = {4}> <h1> Selecione o período </h1></th>
 <tr>
     <td>
-        <h2 for="initDate" className="label">Data início:  {startDate} "/" {startMont} </h2>
+        <h2 for="initDate" className="label">Data início:  {startDate} / {startMont} </h2>
      
-        <input id="initDate" value={initDate}  type="date" onChange={(e)=>setInitDate(e.target.value)}  name="initDate" /></td>
+        <input id="initDate" value={initDate}  type="date" onChange={(e)=>setInitDate(e.target.value)}  name="initDate" />
+        <input id="initMonthy" value={initMonthy}  type="date" onChange={(e)=>setInitMonthy(e.target.value)}  name="initMonthy" /></td>
         <td> </td>
     <td>
-        <h2  for="finalDate" className="label">Data Final:  {endDate}  / {endMont} </h2>
-        <input id="finalDate" value={finalDate}  type="date" onChange={(e)=>setFinalDate(e.target.value)}  name="finalDate" /></td>
+        <h2  for="finalDate" className="label">Data Final:  {endDate} / {endMont} </h2>
+        <input id="finalDate" value={finalDate}  type="date" onChange={(e)=>setFinalDate(e.target.value)}  name="finalDate" />
+        <input id="finalMonthy" value={finalMonthy}  type="date" onChange={(e)=>setFinalMonthy(e.target.value)}  name="finalMonthy" /></td>
         <td></td> 
 </tr>
 </table>
