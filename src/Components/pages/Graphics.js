@@ -4,6 +4,7 @@ import axios from "axios";
 import {useEffect, useState} from 'react';
 import _ from 'lodash'; 
 import moment from "moment/moment";
+import { Chart } from "react-google-charts"
 import Grafico from "../Grafico";
 
 function Graphics(){
@@ -57,7 +58,14 @@ useEffect(() => {
 return (
     <>
     <h1>Graphics</h1>
-    <Grafico/>
+     
+    <Chart 
+	    chartType="AreaChart"
+	    width = "400"
+	    height= "300"
+	    data = {temp2}
+	    options= {options}
+	 /> 
 <table>
 <th colspan = {4}> <h1> Selecione o período </h1></th>
 <tr>
