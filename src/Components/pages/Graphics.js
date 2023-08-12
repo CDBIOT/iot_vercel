@@ -11,7 +11,7 @@ function Graphics(){
 
     
 const [options, setOptions] = useState({
-    title: 'Gráfico de Pizza'
+    title: 'Temperaturas'
   })
   const [data, setData] = useState([
     ['Linguagens', 'Quantidade'],
@@ -88,7 +88,7 @@ return (
 	    chartType="AreaChart"
 	    width = {'400px'}
 	    height= {'300px'}
-	    data = {temp6}
+	    data = {data}
 	    options= {options}
 	 /> 
 <table>

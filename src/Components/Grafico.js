@@ -9,7 +9,7 @@ function Grafico(){
 
 const [temps, setTemperaturas] = useState()
 const [options, setOptions] =[ {title: 'Grafico de Temperaturas'}];
-const [data, setData] = useState('')
+const [dataArray2, setData] = useState('')
 const [startDate,setstartDate] =useState()
 const [finalDate,setfinalDate] =useState()
 
@@ -37,6 +37,7 @@ async function Graf()
     {
         dataArray2.push([dataArray[i].dia, (dataArray[i].temperatura)]);
     }
+    setData(dataArray2)
 
 }
 )
@@ -98,11 +99,12 @@ return(
               </div>
           </form>
           
-    <Chart 
+   
+          <Chart 
 	    chartType="AreaChart"
-	    width = "400"
-	    height= "300"
-	    data = {data}
+	    width = {'400px'}
+	    height= {'300px'}
+	    data = {dataArray2}
 	    options= {options}
 	 /> 
           
