@@ -14,7 +14,8 @@ function Graphics(){
     const [finalDate, setFinalDate] = useState()
     const [initMonthy, setInitMonthy] = useState()
     const [finalMonthy, setFinalMonthy] = useState()
-    
+    const [initYear, setInitYear] = useState()
+    const [finalYear, setFinalYear] = useState()
 
     const startDate = moment(initDate).format("DD");
     const startDay = parseInt(startDate)
@@ -26,6 +27,11 @@ function Graphics(){
     const endMonthy = moment(finalDate).format("MM");
     const endMont = parseInt(endMonthy)
 
+    const startYear = moment(initDate).format("YY");
+    const startYea = parseInt(startYear)
+    const endYear = moment(finalDate).format("YY");
+    const endYea = parseInt(endYear)
+
     //filtragem por dia escolhido
     const temp = temps.filter(temper =>  temper.dia  >= startDay )
     const temp2 = temp.filter(temper =>  temper.dia  <= endDay )
@@ -33,6 +39,11 @@ function Graphics(){
     //filtragem por mês escolhido
     const temp3 = temp2.filter(temperM =>  temperM.mes  >= startMont )
     const temp4 = temp3.filter(temperM =>  temperM.mes  <= endMont )
+
+    //filtragem por ano escolhido
+    const temp5 = temp4.filter(temperA =>  temperA.ano  >= startYear )
+    const temp6 = temp5.filter(temperA =>  temperA.ano  <= endYear )
+
 
 
 async function getData(){
@@ -75,19 +86,19 @@ return (
 	    chartType="AreaChart"
 	    width = "400"
 	    height= "300"
-	    data = {temp2}
+	    data = {temp6}
 	    options= {options}
 	 /> 
 <table>
 <th colspan = {4}> <h1> Selecione o período </h1></th>
 <tr>
     <td>
-        <h2 for="initDate" className="label">Data início:  {startDate} / {startMont} </h2>
+        <h2 for="initDate" className="label">Data início:  {startDate} / {startMont} /{startYear}</h2>
         <input id="initDate" value={initDate}  type="date" onChange={(e)=>{setInitDate(e.target.value);setInitMonthy(e.target.value)}}  name="initDate" /></td>
        
         <td> </td>
     <td>
-        <h2  for="finalDate" className="label">Data Final:  {endDate} / {endMont} </h2>
+        <h2  for="finalDate" className="label">Data Final:  {endDate} / {endMont} / {endYear}</h2>
         <input id="finalDate" value={finalDate}  type="date" onChange={(e)=>{setFinalDate(e.target.value);setFinalMonthy(e.target.value)}}  name="finalDate" /></td>
        
         <td></td> 
