@@ -88,7 +88,7 @@ return (
 	    chartType="AreaChart"
 	    width = {'400px'}
 	    height= {'300px'}
-	    data = {data}
+	    data = {temp6}
 	    options= {options}
 	 /> 
 <table>
