@@ -8,6 +8,17 @@ import { Chart } from "react-google-charts"
 import Grafico from "../Grafico";
 
 function Graphics(){
+
+    
+const [options, setOptions] = useState({
+    title: 'Gráfico de Pizza'
+  })
+  const [data, setData] = useState([
+    ['Linguagens', 'Quantidade'],
+    ['React', 100],
+    ['Angula', 80],
+    ['Vue', 50],
+  ])
     
     const [temps, setTemperaturas] = useState([])
     const [initDate, setInitDate] = useState()
@@ -67,15 +78,6 @@ useEffect(() => {
     }, [])
 
 
-const [options, setOptions] = useState({
-        title: 'Gráfico de Pizza'
-      })
-      const [data, setData] = useState([
-        ['Linguagens', 'Quantidade'],
-        ['React', 100],
-        ['Angula', 80],
-        ['Vue', 50],
-      ])
 
 
 return (
@@ -84,9 +86,9 @@ return (
      
     <Chart 
 	    chartType="AreaChart"
-	    width = "400"
-	    height= "300"
-	    data = {temp6}
+	    width = {'400px'}
+	    height= {'300px'}
+	    data = {data}
 	    options= {options}
 	 /> 
 <table>
