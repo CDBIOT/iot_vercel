@@ -21,6 +21,7 @@ const [options, setOptions] = useState({
   ])
     
     const [temps, setTemperaturas] = useState([])
+    const[temps2,setTemps]= useState([])
     const [initDate, setInitDate] = useState()
     const [finalDate, setFinalDate] = useState()
     const [initMonthy, setInitMonthy] = useState()
@@ -71,6 +72,8 @@ async function getData(){
     setTemperaturas(data.temps)
      console.log(data.temps)
      }).catch(err=> console.log(err))
+     setTemps([temps.dia,temps.temperatura])
+     console.log(temps2)
     }
 
 useEffect(() => {

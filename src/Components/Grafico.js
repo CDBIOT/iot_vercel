@@ -15,13 +15,14 @@ const [finalDate,setfinalDate] =useState()
 
 async function Graf()
 {
+    const options = { 
+        'Access-Control-Allow-Origin':'*',
+        method: 'GET',	
+        mode: 'cors',
+        cache: 'default',
+        'Content-Type': 'application/json'}
 
-  const options = {
-    method: 'GET',
-    mode: 'cors',
-    cache: 'default'
-                   }
-  fetch('https://test-no-vercel.vercel.app/temps')
+  fetch('https://test-no-vercel.vercel.app/temps', options)
   .then(function (response){
     return response.text()})
     .then(data=>{
