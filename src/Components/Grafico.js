@@ -9,12 +9,49 @@ function Grafico(){
 
 const [temps, setTemperaturas] = useState()
 const [options, setOptions] =[ {title: 'Grafico de Temperaturas'}];
-const [data, setData] = useState('')
+const [dataArray2, setData] = useState('')
 const [startDate,setstartDate] =useState()
 const [finalDate,setfinalDate] =useState()
 
-useEffect(() => {
+async function Graf()
+{
+    const options = { 
+        'Access-Control-Allow-Origin':'*',
+        method: 'GET',	
+        mode: 'cors',
+        cache: 'default',
+        'Content-Type': 'application/json'}
 
+  fetch('https://test-no-vercel.vercel.app/temps', options)
+  .then(function (response){
+    return response.text()})
+    .then(data=>{
+    const myObj = JSON.parse(data);
+    var dataArray = Array.from(myObj.temps);
+    console.log("dataArray: ", dataArray)
+
+    var dataArray2=[];
+
+    dataArray2.push(['Dia','Temp']);
+
+    for (var i in dataArray)
+    {
+        dataArray2.push([dataArray[i].dia, (dataArray[i].temperatura)]);
+    }
+    setData(dataArray2)
+
+}
+)
+
+}
+useEffect(() => {
+Graf()
+    
+}, []);
+
+
+
+useEffect(() => {
 
 const options = { 
         'Access-Control-Allow-Origin':'*',
@@ -33,6 +70,8 @@ const options = {
     }
 });
 }, []);
+
+
 
 const handleChange = (e) => {
     e.preventDefault()
@@ -61,15 +100,17 @@ return(
               </div>
           </form>
           
+   
+          <Chart 
+	    chartType="AreaChart"
+	    width = {'400px'}
+	    height= {'300px'}
+	    data = {dataArray2}
+	    options= {options}
+	 /> 
+          
       </section>
 
-<Chart 
-	    chartType="AreaChart"
-	    width = "400"
-	    height= "300"
-	    data = {data}
-	    options= {options}
-	 />
 </>
 
 )
