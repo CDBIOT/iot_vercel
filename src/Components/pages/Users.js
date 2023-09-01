@@ -4,21 +4,30 @@ import {useEffect, useState} from 'react';
 
 function Users(){
 
-    const [people, setPeople] = useState()
+const [people, setPeople] = useState()
+async function getUsers(){
 
-    useEffect(() => {
-        Axios.get({
-            method:'get',
-            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-            url: 'https://test-no-vercel.vercel.app/users'
-            })
-        .then((response) =>{
-        setPeople(response.data);
-        });
+const options = { 
+        'Access-Control-Allow-Origin':'*',
+        method: 'GET',	
+        mode: 'cors',
+        cache: 'default',
+        'Content-Type': 'application/json'}
+
+    fetch(`https://test-no-vercel.vercel.app/temps`,options)
+        .then(response=>response.json())
+         .then((data)=>{ 
+        setPeople(data.people);
+    }).catch(err=> console.log(err))
         {
         console.log(people)
         }
-    }, [])
+}
+useEffect(() => {
+            getUsers();
+}, [])
+
+
     return (
     <>
     <h1>Users</h1>
