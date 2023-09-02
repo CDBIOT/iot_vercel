@@ -36,20 +36,30 @@ useEffect(() => {
     <>
     <h1>Users</h1>
      
-    { peo.map((user,index)=>( 
+    {peo.lenght >0 ? (
+     peo.map((user,index)=>( 
     <div>
     <h1>("Novo usuario" {user.nome}  ")</h1>
     <table >
         <tbody>
- 	        <tr>
-            <h2 id = "user"></h2>	
-            <td>${user.id}</td>
-            <td>${user.nome}</td>
+ 	        <tr key ={index}>
+            <td>{user.id}</td>
+            <td>{user.nome}</td>
+            <td>{user.email}</td>
             </tr>
         </tbody>
     </table>
     </div>
-     ))
+     )
+     )) :(
+        peo.map((user, index) =>
+        <tr key ={index}>
+        <td>{user.id}</td>
+        <td>{user.nome}</td>
+        <td>{user.email}</td>
+        </tr>
+        )
+     )
     }
     </>
     
