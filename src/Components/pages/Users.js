@@ -14,7 +14,7 @@ const options = {
         cache: 'default',
         'Content-Type': 'application/json'}
 
-    fetch(`https://test-no-vercel.vercel.app/temps`,options)
+    fetch(`https://test-no-vercel.vercel.app/user`,options)
         .then(response=>response.json())
          .then((data)=>{ 
         setPeople(data.people);
