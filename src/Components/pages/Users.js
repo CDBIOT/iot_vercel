@@ -5,9 +5,10 @@ import {useEffect, useState} from 'react';
 function Users(){
 
 const [peo, setPeople] = useState()
-async function getUsers(){
 
-const options = { 
+
+async function getUsers(){
+    const options = { 
         'Access-Control-Allow-Origin':'*',
         method: 'GET',	
         mode: 'cors',
@@ -16,9 +17,11 @@ const options = {
 
     fetch(`https://test-no-vercel.vercel.app/user`,options)
         .then(response=>response.json())
-         .then((data)=>{ 
+        .then((data)=>{ 
         setPeople(data.peo);
+        console.log(data.peo)
         console.log(data.people)
+        
     }).catch(err=> console.log(err))
         {
         console.log(people)
