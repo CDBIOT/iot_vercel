@@ -4,7 +4,7 @@ import {useEffect, useState} from 'react';
 
 function Users(){
 
-const [people, setPeople] = useState()
+const [peo, setPeople] = useState()
 async function getUsers(){
 
 const options = { 
@@ -17,7 +17,8 @@ const options = {
     fetch(`https://test-no-vercel.vercel.app/user`,options)
         .then(response=>response.json())
          .then((data)=>{ 
-        setPeople(data.people);
+        setPeople(data.peo);
+        console.log(data.people)
     }).catch(err=> console.log(err))
         {
         console.log(people)
@@ -32,7 +33,7 @@ useEffect(() => {
     <>
     <h1>Users</h1>
      
-    { people.map((user,index)=>( 
+    { peo.map((user,index)=>( 
     <div>
     <h1>("Novo usuario" {user.nome}  ")</h1>
     <table >
