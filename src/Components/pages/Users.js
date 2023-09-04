@@ -20,7 +20,7 @@ async function getUsers(){
         .then((data)=>{ 
         setPeople(data.people);
         console.log(data.people)
-        console.log(people)
+        console.log(people.people)
         
     }).catch(err=> console.log(err))
         {
