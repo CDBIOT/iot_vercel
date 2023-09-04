@@ -18,7 +18,7 @@ async function getUsers(){
     fetch(`https://test-no-vercel.vercel.app/user`,options)
         .then(response=>response.json())
         .then((data)=>{ 
-        setPeople(data.peo);
+        setPeople(data.people);
         console.log(data.peo)
         console.log(data.people)
         
