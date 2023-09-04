@@ -20,11 +20,11 @@ async function getUsers(){
         .then((data)=>{ 
         setPeople(data.people);
         console.log(data.people)
-        console.log(people.people)
+        console.log(data.people.nome)
         
     }).catch(err=> console.log(err))
         {
-        console.log(people)
+        console.log(people.nome)
         }
 }
 useEffect(() => {
