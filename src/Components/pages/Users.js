@@ -4,7 +4,7 @@ import {useEffect, useState} from 'react';
 
 function Users(){
 
-const [peo, setPeople] = useState()
+const [people, setPeople] = useState()
 
 
 async function getUsers(){
@@ -20,11 +20,11 @@ async function getUsers(){
         .then((data)=>{ 
         setPeople(data.people);
         console.log(data.people)
-        console.log(peo)
+        console.log(people)
         
     }).catch(err=> console.log(err))
         {
-        console.log(peo)
+        console.log(people)
         }
 }
 useEffect(() => {
