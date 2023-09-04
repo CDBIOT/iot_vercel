@@ -19,8 +19,8 @@ async function getUsers(){
         .then(response=>response.json())
         .then((data)=>{ 
         setPeople(data.people);
-        console.log(data.peo)
         console.log(data.people)
+        console.log(peo)
         
     }).catch(err=> console.log(err))
         {
