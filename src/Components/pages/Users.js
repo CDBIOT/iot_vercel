@@ -24,7 +24,7 @@ async function getUsers(){
         
     }).catch(err=> console.log(err))
         {
-        console.log(people)
+        console.log(peo)
         }
 }
 useEffect(() => {
