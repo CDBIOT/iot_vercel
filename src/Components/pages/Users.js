@@ -36,8 +36,9 @@ return (
     <>
     <h1>Users</h1>
      
-    {peo.lenght >0 ? (
-     peo.map((user,index)=>( 
+    {/* {
+    peo.lenght >0 ? (
+     peo.map((user,index)=>(  */}
     <div>
   
     <table >
@@ -50,19 +51,19 @@ return (
         </tbody>
     </table>
     </div>
-     )
-     )) :(
-       
-        peo.map((user, index) =>
+     {/* )
+     )) :( */}
+{/*        
+        peo.map((user, index) => */}
         <tr key ={index}>
         <td>{user.id}</td>
         <td>{user.nome}</td>
         <td>{user.email}</td>
         </tr>
         
-        )
-     )
-    }
+        {/* ) */}
+     {/* ) */}
+    {/* } */}
     </>
     
     )
