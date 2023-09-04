@@ -4,7 +4,7 @@ import {useEffect, useState} from 'react';
 
 function Users(){
 
-const [people, setPeople] = useState()
+const [people, setPeople] = useState([])
 
 
 async function getUsers(){
