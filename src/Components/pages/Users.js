@@ -36,7 +36,7 @@ return (
     <>
     <h1>Users</h1>
      
-    {people.lenght >0 ? (
+    {peo.lenght >0 ? (
      peo.map((user,index)=>( 
     <div>
   
