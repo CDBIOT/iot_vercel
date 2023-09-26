@@ -1,5 +1,6 @@
 import { useState , useEffect } from "react"
 import styles from "../../styles/Schedule.module.css"
+import Axios from "axios"
 
 function Schedule(){
 
@@ -23,7 +24,7 @@ async function mqtt_show() {
    await Axios.get (('https://test-no-vercel.vercel.app/mqtt'),options)
 	.then(response => {
 	 setData(response.vm.dia)
-	console.log("dia: " ,data.vm.dia)
+	console.log("dia: " ,response.vm.dia)
 })
 }
 
