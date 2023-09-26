@@ -20,13 +20,13 @@ async function mqtt_show() {
     cache: 'default',
     'Content-Type': 'application/json'}
 
-    fetch(('https://test-no-vercel.vercel.app/mqtt'),options)
-	.then(response => response.json())
-	.then(data=>{
-    setData(data.vm.dia)
+   await Axios.get (('https://test-no-vercel.vercel.app/mqtt'),options)
+	.then(response => {
+	 setData(response.vm.dia)
 	console.log("dia: " ,data.vm.dia)
-}).catch(err=> console.log(err))
+})
 }
+
 
 useEffect(() => {
     mqtt_show();
