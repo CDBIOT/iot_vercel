@@ -36,8 +36,8 @@ return (
     <h1>Users</h1>
      
      {
-    peo.lenght >0 ? (
-     peo.map((user,index)=>(  
+    people.lenght >0 ? (
+     people.map((user,index)=>(  
     <div>
 
     <table >
@@ -53,7 +53,7 @@ return (
      )
      )) :( 
       
-        peo.map((user, index) => 
+        people.map((user, index) => 
         <tr key ={index}>
         <td>{user.id}</td>
         <td>{user.nome}</td>
