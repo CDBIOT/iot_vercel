@@ -1,6 +1,6 @@
 import styles from "../../styles/Graphics.module.css"
 import React from "react";
-import axios from "axios";
+import Axios from "axios";
 import {useEffect, useState} from 'react';
 import _ from 'lodash'; 
 import moment from "moment/moment";
@@ -66,12 +66,12 @@ async function getData(){
         cache: 'default',
         'Content-Type': 'application/json'}
 
-fetch(`https://test-no-vercel.vercel.app/temps`,options)
+Axios.get(`https://test-no-vercel.vercel.app/temps`,options)
     .then(response=>response.json())
  	.then((data)=>{ 
     setTemperaturas(data.temps)
      console.log(data.temps)
-     }).catch(err=> console.log(err))
+     }).catch(error=> console.log(error))
      setTemps([temps.dia])
      console.log(temps2)
     }
