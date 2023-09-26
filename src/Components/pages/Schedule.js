@@ -23,7 +23,7 @@ async function mqtt_show() {
 
    await Axios.get (('https://test-no-vercel.vercel.app/mqtt'),options)
 	.then(response => {
-	 setData(response.vm)
+	 setData(response.data.vm)
 	console.log("dia: " ,response.vm)
 })
 }
