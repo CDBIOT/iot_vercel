@@ -66,14 +66,13 @@ async function getData(){
         cache: 'default',
         'Content-Type': 'application/json'}
 
-Axios.get(`https://test-no-vercel.vercel.app/temps`,options)
-    .then(response=>response.json())
- 	.then((data)=>{ 
+Axios.get('https://test-no-vercel.vercel.app/temps',options)
+    .then(response=>{ 
     setTemperaturas(data.temps)
      console.log(data.temps)
-     }).catch(error=> console.log(error))
-     setTemps([temps.dia])
-     console.log(temps2)
+     })
+     setTemps(temps.dia)
+   
     }
 
 useEffect(() => {
