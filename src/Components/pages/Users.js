@@ -15,14 +15,13 @@ async function getUsers(){
         cache: 'default',
         'Content-Type': 'application/json'}
 
-    fetch(`https://test-no-vercel.vercel.app/user`,options)
-        .then(response=>response.json())
-        .then((data)=>{ 
-        setPeople(data.people);
-        console.log(data.people)
-        console.log(data.people.nome)
+await Axios.get(`https://test-no-vercel.vercel.app/user`,options)
+        .then(response=>{
+        setPeople(response.people)
+        console.log(people)
+        console.log(people.nome)
         
-    }).catch(err=> console.log(err))
+    })
         {
         console.log(people.nome)
         }
@@ -36,11 +35,11 @@ return (
     <>
     <h1>Users</h1>
      
-    {/* {
+     {
     peo.lenght >0 ? (
-     peo.map((user,index)=>(  */}
+     peo.map((user,index)=>(  
     <div>
-{/*   
+
     <table >
         <tbody>
  	        <tr key ={index}>
@@ -49,21 +48,21 @@ return (
             <td>{user.email}</td>
             </tr>
         </tbody>
-    </table> */}
+    </table> 
     </div>
-     {/* )
-     )) :( */}
-{/*        
-        peo.map((user, index) => */}
-        {/* <tr key ={index}>
+     )
+     )) :( 
+      
+        peo.map((user, index) => 
+        <tr key ={index}>
         <td>{user.id}</td>
         <td>{user.nome}</td>
         <td>{user.email}</td>
-        </tr> */}
+        </tr> 
         
-        {/* ) */}
-     {/* ) */}
-    {/* } */}
+        ) 
+      ) 
+    } 
     </>
     
     )
