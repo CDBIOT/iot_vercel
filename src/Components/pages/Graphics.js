@@ -72,7 +72,7 @@ fetch(`https://test-no-vercel.vercel.app/temps`,options)
     setTemperaturas(data.temps)
      console.log(data.temps)
      }).catch(err=> console.log(err))
-     setTemps([temps.dia,temps.temperatura])
+     setTemps([temps.dia])
      console.log(temps2)
     }
 
