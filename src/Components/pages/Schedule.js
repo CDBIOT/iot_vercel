@@ -77,7 +77,7 @@ return (
         <div>
         <form action="Relogio" method="post">
         <table>
-            <th colspan = {6}> Set Time Light </th>
+            <th colspan = {6}><h2>Set Time Light</h2> </th>
             <tr><td><input id="initDate" value={initDate}  type="date" onChange={(e)=>setInitDate(e.target.value)}  name="initDate" />
                 <label >Data Inicial: {initDate}</label>
             </td> 
@@ -88,7 +88,7 @@ return (
         </table>
 
 <table>
-<tr><th colspan = {6}>Relógio Iot</th></tr>
+<tr><th colspan = {6}><h2>Relógio Iot</h2></th></tr>
 <tr><td><h1 colspan = {6}>Disparo </h1></td></tr>
     <tr> <td>
     <select onChange={(e) => setHora(e.target.value)}>
@@ -112,7 +112,7 @@ return (
 
 
 
-    <tr><th colspan = {6}>Tempo ligado </th></tr>
+    <tr><th colspan = {6}><h2>Tempo ligado </h2></th></tr>
 	<tr>
 	    <td><input type="text" id="tempod" value="" maxlength="10" /></td> 
 	    <td><h2 id="tempo"></h2></td>
