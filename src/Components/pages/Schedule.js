@@ -118,7 +118,7 @@ return (
 	    <td><h2 id="tempo"></h2></td>
          <td><h1 id = "disp"> </h1></td>
     </tr>
-    <tr> <th rowspan ={6}>Estado</th></tr>
+    <tr> <th colspan ={6}>Estado</th></tr>
     <tr>
         <span id="rele">N/D</span>
     </tr>
