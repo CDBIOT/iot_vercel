@@ -28,7 +28,6 @@ async function mqtt_show() {
 })
 }
 
-
 useEffect(() => {
     mqtt_show();
     }, [])
@@ -59,7 +58,10 @@ return (
     <div className = {styles.temp_show}>
         <table>
 	        <tr><th colspan = {6}><h1>TEMPERATURA DO QUARTO </h1></th></tr>
-            {temps.map((t,i)=>(
+
+            {temps.length >0 ? (
+            
+            temps.map((t,i)=>(
             <tr key = {i}>
                 {/* <td width="20%"className={styles.td}>{t.temperatura}</td>
                 <td width="20%"className={styles.td}>{t.local} </td> */}
@@ -68,7 +70,11 @@ return (
                 <td width="20%"className={styles.td}>{t.ano} </td>
             </tr>
             )
-         )}
+         )): ( 
+            <td>Não Há Itens na lista</td>
+            
+            )
+        }
         </table>
     
     </div>
