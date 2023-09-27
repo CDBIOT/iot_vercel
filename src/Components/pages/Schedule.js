@@ -63,8 +63,8 @@ return (
             
             temps.map((t,i)=>(
             <tr key = {i}>
-                {/* <td width="20%"className={styles.td}>{t.temperatura}</td>
-                <td width="20%"className={styles.td}>{t.local} </td> */}
+                <td width="20%"className={styles.td}>{t.temperatura}</td>
+                <td width="20%"className={styles.td}>{t.local} </td> 
 	            <td width="20%"className={styles.td}>{t.dia} </td>
                 <td width="20%"className={styles.td}>{t.mes} </td>
                 <td width="20%"className={styles.td}>{t.ano} </td>
