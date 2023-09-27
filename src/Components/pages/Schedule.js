@@ -59,11 +59,11 @@ return (
         <table>
 	        <tr><th colspan = {6}><h1>TEMPERATURA DO QUARTO </h1></th></tr>
 
-            {temps.length <0 ? (
+            {temps.length >0 ? (
             
             temps.map((t,i)=>(
             <tr key = {i}>
-                <td width="20%"className={styles.td}>{t.temperatura}</td>
+                <td width="20%"className={styles.td}>{t.temp[1]}</td>
                 <td width="20%"className={styles.td}>{t.local} </td> 
 	            <td width="20%"className={styles.td}>{t.dia} </td>
                 <td width="20%"className={styles.td}>{t.mes} </td>
