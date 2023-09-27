@@ -65,7 +65,15 @@ return (
             </tr>
             )
          )): ( 
-            <td>Não Há Itens na lista</td>
+           
+          
+                <tr>
+                    <td width="20%"className={styles.td}>{t.temp}</td>
+                    <td width="20%"className={styles.td}>{t.local} </td> 
+                    <td width="20%"className={styles.td}>{t.dia} </td>
+                    <td width="20%"className={styles.td}>{t.mes} </td>
+                    <td width="20%"className={styles.td}>{t.ano} </td>
+                </tr>
             
             )
         }
