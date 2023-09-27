@@ -77,7 +77,7 @@ return (
         <div>
         <form action="Relogio" method="post">
         <table>
-            <th colspan = {4}> <h1> Set Time Light </h1></th>
+            <th colspan = {6}> <h1> Set Time Light </h1></th>
             <tr><td><input id="initDate" value={initDate}  type="date" onChange={(e)=>setInitDate(e.target.value)}  name="initDate" />
                 <label >Data Inicial: {initDate}</label>
             </td> 
@@ -89,8 +89,8 @@ return (
 
 <table>
 <tr><th colspan = {6}><h1>RELOGIO IOT</h1></th></tr>
-<tr><td><h1 colspan = {6}>Disparo </h1></td>
-     <td>
+<tr><td><h1 colspan = {6}>Disparo </h1></td></tr>
+    <tr> <td>
     <select onChange={(e) => setHora(e.target.value)}>
     <option value="" size="6" >Select Hora  </option>   
     {horas.map(hora=>{
@@ -109,15 +109,16 @@ return (
 	<input type="text"  name = "mind" id= "md" value = {Minuto}  size="6" /> 
      </td> 
 </tr>
-    <tr><td><h1 colspan = {6}>Tempo ligado </h1></td>
-	    <td><h1 id = "disp"> </h1></td>
-    </tr>
+    <tr><th colspan = {6}>Tempo ligado </th></tr>
 	<tr>
+        <td><h1 id = "disp"> </h1></td>
 	    <td><input type="text" id="tempod" value="" maxlength="10" /></td> 
 	    <td><h2 id="tempo"></h2></td>
     </tr>
     <tr>
-    <td rowspan ={2}><h1>Estado</h1></td><td><span id="rele">N/D</span></td>
+    <th rowspan ={6}>Estado</th></tr>
+    <tr>
+        <span id="rele">N/D</span>
     </tr>
     <tr><td>
 	    <input type="button" id="btnOn"   value="Ligar"    onClick="setRelay(1)"/>
