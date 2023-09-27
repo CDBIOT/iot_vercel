@@ -65,8 +65,6 @@ return (
             </tr>
             )
          )): ( 
-           
-          
                 <tr>
                     <td width="20%"className={styles.td}>{t.temp}</td>
                     <td width="20%"className={styles.td}>{t.local} </td> 
