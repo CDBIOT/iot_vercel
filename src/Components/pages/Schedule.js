@@ -53,7 +53,7 @@ return (
         <table>
 	        <tr><th colspan = {6}><h1>TEMPERATURA DO QUARTO </h1></th></tr>
 
-            {temps.length <0 ? (
+            {temps.length >0 ? (
             
             temps.map((t,i)=>(
             <tr key = {i}>
