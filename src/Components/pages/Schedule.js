@@ -101,7 +101,7 @@ return (
 
 <tr><th colspan = {6}><h2>Relógio Iot</h2></th></tr>
 
-<tr><label>{dateTime.hours} : {dateTime.minutes} : {dateTime.seconds}</label></tr>
+<tr><h1>{dateTime.hours} : {dateTime.minutes} : {dateTime.seconds}</h1></tr>
 
 <tr><td><h1 colspan = {6}>Disparo </h1></td></tr>
     <tr> <td>
