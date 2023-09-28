@@ -4,7 +4,7 @@ import Axios from "axios"
 
 function Schedule(){
 
-    const date = new Date();
+const date = new Date();
 const [temps, setData] = useState({})
 const [initDate, setInitDate] = useState()
 const [finalDate, setFinalDate] = useState()
@@ -39,7 +39,7 @@ useEffect(() => {
     }, [])
 
 function startTime() {
-    const t=setInterval(() =>{
+    const timer = setInterval(() =>{
         const date = new Date()
         setDateTime({
             hours:date.getHours(),
@@ -47,6 +47,7 @@ function startTime() {
             seconds :date.getSeconds()
         })
     },1000)
+    return ()=> clearInterval(timer)
 }
 
 useEffect(() => {
