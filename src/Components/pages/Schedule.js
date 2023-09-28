@@ -107,8 +107,9 @@ return (
 
 <tr><th colspan = {6}><h2>Relógio Iot</h2></th></tr>
 
+<tr><label>{dateTime.hours} : {dateTime.minutes} : {dateTime.seconds}</label></tr>
+
 <tr><td><h1 colspan = {6}>Disparo </h1></td></tr>
-<tr><label>{date.hours} : {date.minutes} : {date.seconds}</label></tr>
     <tr> <td>
 
     <select onChange={(e) => setHora(e.target.value)}>
