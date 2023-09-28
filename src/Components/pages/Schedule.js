@@ -4,11 +4,17 @@ import Axios from "axios"
 
 function Schedule(){
 
+    const date = new Date();
 const [temps, setData] = useState({})
 const [initDate, setInitDate] = useState()
 const [finalDate, setFinalDate] = useState()
 const [Hora, setHora] = useState()
 const [Minuto, setMinuto] = useState()
+const [dateTime , setDateTime] = useState({
+    hours: date.getHours(),
+    minutes: date.getMinutes(),
+    seconds: date.getSeconds()
+})
 const horas= [0,1,2,3,4,5,6,7,8,9,10,11,12]
 const minutos=[0,1,2,3,4,5,6,7,8,9,10]
 console.log(horas)
@@ -32,17 +38,20 @@ useEffect(() => {
     mqtt_show();
     }, [])
 
-// function startTime() {
-//         var today=new Date();
-//         var h=today.getHours();
-//         var m=today.getMinutes();
-//         var s=today.getSeconds();
-        
-//         m=checkTime(m);
-//         s=checkTime(s);
-//         document.getElementById('txt').innerText= h+":"+m+":"+s;
-//        const t=setTimeout('startTime()',500);
-//     }
+function startTime() {
+    const t=setInterval(() =>{
+        const date = new Date()
+        setDateTime({
+            hours:date.getHours(),
+            minutes:date.getMinutes(),
+            seconds :date.getSeconds()
+        })
+    },1000)
+}
+
+useEffect(() => {
+    startTime();
+    }, [])
     
 
 return (
@@ -99,7 +108,9 @@ return (
 <tr><th colspan = {6}><h2>Relógio Iot</h2></th></tr>
 
 <tr><td><h1 colspan = {6}>Disparo </h1></td></tr>
+<tr><label>{date.hours} : {date.minutes} : {date.seconds}</label></tr>
     <tr> <td>
+
     <select onChange={(e) => setHora(e.target.value)}>
     <option value="" size="6" >Select Hora  </option>   
     {horas.map(hora=>{
