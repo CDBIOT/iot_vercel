@@ -75,7 +75,9 @@ return (
             </tr>
             )
          )): ( 
-                <tr>
+            
+            temps.map((t,i)=>(
+                <tr key = {i}>
                     <td width="20%"className={styles.td}>{t.temp}</td>
                     <td width="20%"className={styles.td}>{t.local} </td> 
                     <td width="20%"className={styles.td}>{t.dia} </td>
@@ -83,7 +85,8 @@ return (
                     <td width="20%"className={styles.td}>{t.ano} </td>
                 </tr>
             
-            )
+            ))
+         )
         }
         </table>
     
