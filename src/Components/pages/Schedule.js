@@ -109,7 +109,7 @@ return (
     <select onChange={(e) => setHora(e.target.value)}>
     <option value="" size="6" >Select Hora  </option>   
     {horas.map(hora=>{
-        return<option value = {hora} key={hora}>  </option>
+        return<option value = {hora} key={hora}>{hora}  </option>
         })}
     </select>
 
@@ -118,7 +118,7 @@ return (
     <select onChange={e =>setMinuto(e.target.value)}> 
     <option value={Minuto}> Select min </option>  
         {minutos.map(min=>{
-            return<option value= {min} key={min}> </option>
+            return<option value= {min} key={min}>{min} </option>
         })}
         </select>
 	<input type="text"  name = "mind" id= "md" value = {Minuto}  size="6" /> 
