@@ -5,7 +5,7 @@ import Axios from "axios"
 function Schedule(){
 
 const date = new Date();
-const [temps, setData] = useState([])
+const [temps, setData] = useState({})
 const [initDate, setInitDate] = useState()
 const [finalDate, setFinalDate] = useState()
 const [Hora, setHora] = useState()
