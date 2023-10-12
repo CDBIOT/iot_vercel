@@ -62,7 +62,7 @@ return (
     <div className = {styles.temp_show}>
         <table>
 	        <tr><th colspan = {6}><h1>TEMPERATURA DO QUARTO </h1></th></tr>
-            <label>{temps}{response.data} </label>
+            <label>{temps}{temps} </label>
 
             {temps.length >0 ? (
             
