@@ -6,6 +6,8 @@ function Schedule(){
 
 const date = new Date();
 const [temps, setData] = useState({})
+const [temp,setTemp] = useState()
+const [dia,setDia] = useState()
 const [initDate, setInitDate] = useState()
 const [finalDate, setFinalDate] = useState()
 const [Hora, setHora] = useState()
@@ -29,6 +31,8 @@ async function mqtt_show() {
    await Axios.get (('https://test-no-vercel.vercel.app/mqtt'),options)
 	.then(response => {
 	 setData(response.data.vm)
+     setTemp(response.data.vm.temp)
+     setDia(response.data.vm.dia)
 	console.log("dia: " ,response.data.vm)
     console.log("mes: " ,response.data.vm.mes)
 })
@@ -61,6 +65,7 @@ return (
     
     <div className = {styles.temp_show}>
         <table>
+            <tr><span>{ dia }{ temp }</span></tr>
 	        <tr><th colspan = {6}><h1>TEMPERATURA DO QUARTO </h1></th></tr>
           
             {temps.length >0 ? (
