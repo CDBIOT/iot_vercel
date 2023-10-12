@@ -69,7 +69,7 @@ return (
     <>
     <h1>Schedule</h1>
     <table>
-    <tr><td  >Temperatura: {temp[10]}  Local: { local } Data: { dia } / { mes } / { ano }</td></tr>
+    <tr><td  >Temperatura: {temps[temp]}  Local: { local } Data: { dia } / { mes } / { ano }</td></tr>
     </table>
     {/* <div className = {styles.temp_show}>
         <table>
