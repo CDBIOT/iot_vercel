@@ -33,8 +33,8 @@ async function mqtt_show() {
 	 setData(response.data.vm)
      setTemp(response.data.vm.temp)
      setDia(response.data.vm.dia)
-	console.log("dia: " ,response.data.vm)
-    console.log("mes: " ,response.data.vm.mes)
+	console.log("temp: " ,response.data.vm.temp)
+    console.log("dia: " ,response.data.vm.dia)
 })
 }
 
@@ -62,17 +62,19 @@ useEffect(() => {
 return (
     <>
     <h1>Schedule</h1>
-    
+    <table>
+    <tr><span>{ dia }{ temp }</span></tr>
+    </table>
     <div className = {styles.temp_show}>
         <table>
-            <tr><span>{ dia }{ temp }</span></tr>
+           
 	        <tr><th colspan = {6}><h1>TEMPERATURA DO QUARTO </h1></th></tr>
           
             {temps.length >0 ? (
             
             temps.map((t,i)=>(
             <tr key = {i}>
-                 <td width="20%"className={styles.td}>{t.temp}</td> 
+                <td width="20%"className={styles.td}>{t.temp}</td> 
                 <td width="20%"className={styles.td}>{t.local} </td> 
 	            <td width="20%"className={styles.td}>{t.dia} </td>
                 <td width="20%"className={styles.td}>{t.mes} </td>
