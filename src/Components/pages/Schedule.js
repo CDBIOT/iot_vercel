@@ -63,7 +63,7 @@ return (
     <>
     <h1>Schedule</h1>
     <table>
-    <tr><span>{ dia }{ temp }</span></tr>
+    <tr><span>{ dia }</span></tr>
     </table>
     <div className = {styles.temp_show}>
         <table>
