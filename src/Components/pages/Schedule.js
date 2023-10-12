@@ -8,6 +8,9 @@ const date = new Date();
 const [temps, setData] = useState({})
 const [temp,setTemp] = useState()
 const [dia,setDia] = useState()
+const [mes,setMes] = useState()
+const [ano,setAno] = useState()
+const [local,setLocal] = useState()
 const [initDate, setInitDate] = useState()
 const [finalDate, setFinalDate] = useState()
 const [Hora, setHora] = useState()
@@ -33,6 +36,9 @@ async function mqtt_show() {
 	 setData(response.data.vm)
      setTemp(response.data.vm.temp)
      setDia(response.data.vm.dia)
+     setMes(response.data.vm.mes)
+     setAno(response.data.vm.ano)
+     setLocal(response.data.vm.local)
 	console.log("temp: " ,response.data.vm.temp)
     console.log("dia: " ,response.data.vm.dia)
 })
@@ -63,9 +69,9 @@ return (
     <>
     <h1>Schedule</h1>
     <table>
-    <tr><span>{ dia }</span></tr>
+    <tr><td  >Temperatura: {} Local: { local } Data:{ dia } { mes } { ano }</td></tr>
     </table>
-    <div className = {styles.temp_show}>
+    {/* <div className = {styles.temp_show}>
         <table>
            
 	        <tr><th colspan = {6}><h1>TEMPERATURA DO QUARTO </h1></th></tr>
@@ -87,7 +93,7 @@ return (
         }
         </table>
     
-    </div>
+    </div> */}
     
     <section>
         <div>
