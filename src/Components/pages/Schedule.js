@@ -22,7 +22,6 @@ console.log(horas)
 async function mqtt_show() {
 	const options = {
     'Access-Control-Allow-Origin':'*',
-    method: 'GET',	
     mode: 'cors',
     cache: 'default',
     'Content-Type': 'application/json'}
@@ -30,7 +29,8 @@ async function mqtt_show() {
    await Axios.get (('https://test-no-vercel.vercel.app/mqtt'),options)
 	.then(response => {
 	 setData(response.data.vm)
-	console.log("dia: " ,response.data)
+	console.log("dia: " ,response.data.vm)
+    console.log("mes: " ,response.data.vm.mes)
 })
 }
 
@@ -63,7 +63,6 @@ return (
         <table>
 	        <tr><th colspan = {6}><h1>TEMPERATURA DO QUARTO </h1></th></tr>
           
-
             {temps.length >0 ? (
             
             temps.map((t,i)=>(
