@@ -4,40 +4,60 @@ import {useEffect, useState} from 'react';
 
 function Users(){
 
-    const [people, setPeople] = useState()
+const [people, setPeople] = useState([])
 
-    useEffect(() => {
-        Axios.get({
-            method:'get',
-            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-            url: 'https://test-no-vercel.vercel.app/users'
-            })
-        .then((response) =>{
-        setPeople(response.data);
-        });
-        {
-        console.log(people)
-        }
-    }, [])
-    return (
+
+async function getUsers(){
+    const options = { 
+        'Access-Control-Allow-Origin':'*',
+        method: 'GET',	
+        mode: 'cors',
+        cache: 'default',
+        'Content-Type': 'application/json'}
+
+await Axios.get(`https://test-no-vercel.vercel.app/user`,options)
+        .then(response=>{
+        setPeople(response.data.people)
+        console.log(response.data)        
+    })
+}
+useEffect(() => {
+    getUsers();
+}, [])
+
+
+return (
     <>
     <h1>Users</h1>
      
-    { people.map((user,index)=>( 
+     {
+    people.lenght >0 ? (
+     people.map((user,index)=>(  
     <div>
-    <h1>("Novo usuario" {user.nome}  ")</h1>
+
     <table >
         <tbody>
- 	        <tr>
-            <h2 id = "user"></h2>	
-            <td>${user.id}</td>
-            <td>${user.nome}</td>
+ 	        <tr key ={index}>
+            <td>{user.id}</td>
+            <td>{user.nome}</td>
+            <td>{user.email}</td>
             </tr>
         </tbody>
-    </table>
+    </table> 
     </div>
-     ))
-    }
+     )
+     )) :( 
+      
+        people.map((user, index) => 
+        <tr key ={index}>
+        <td>{user.id}</td>
+        <td>{user.nome}</td>
+        <td>{user.email}</td>
+        </tr> 
+        
+        ) 
+      ) 
+    } 
     </>
     
     )
