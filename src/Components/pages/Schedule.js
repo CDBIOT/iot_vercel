@@ -151,9 +151,10 @@ return (
         <span id="rele">N/D</span>
     </tr>
     <tr><td>
-	    <input type="button" id="btnOn"   value="Ligar"    onClick="setRelay(1)"/>
-	    <input type="button" id="btnOff"  value="Desligar" onClick="setRelay(0)"/>
-	    <input type="button" id="btndisp" value="Setar"    onClick="setdisp()"/>
+	    <input type="button" id="lamp"   value="onLamp"    onClick="setLamp()"/>
+        <input type="button" id="aqua_lamp"   value="onAquaLamp"    onClick="setAqua_lamp()"/>
+	    <input type="button" id="pump"  value="setPump" onClick="setPump()"/>
+	    <input type="button" id="vent" value="setVent"    onClick="setVent()"/>
     </td></tr>
     </table>
         </form>
