@@ -74,7 +74,7 @@ function startTime() {
 }
 
 useEffect(() => {
-    startTime();
+   // startTime();
     }, [])
     
 
