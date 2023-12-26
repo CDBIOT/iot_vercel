@@ -165,9 +165,9 @@ return (
     </tr>
     <tr><td>
 	    <input type="button" id="lamp"   value="onLamp"    onClick= {onLamp()}/>
-        <input type="button" id="aqua_lamp"   value="onAquaLamp"    onClick={setAqua_lamp()}/>
-	    <input type="button" id="pump"  value="setPump" onClick={setPump()}/>
-	    <input type="button" id="vent" value="setVent"    onClick={setVent()}/>
+        <input type="button" id="aqua_lamp"   value="onAquaLamp"    onClick={onLamp()}/>
+	    <input type="button" id="pump"  value="setPump" onClick={onLamp()}/>
+	    <input type="button" id="vent" value="setVent"    onClick={onLamp()}/>
     </td></tr>
     </table>
         </form>
