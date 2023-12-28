@@ -77,6 +77,31 @@ useEffect(() => {
    // startTime();
     }, [])
     
+async function onLamp() {
+    const options = {
+        'Access-Control-Allow-Origin':'*',
+        mode: 'cors',
+        cache: 'default',
+        'Content-Type': 'application/json'}
+    
+       await Axios.get (('https://test-no-vercel.vercel.app/mqtt_on'),options)
+        .then(response => {}
+        )
+}
+
+async function offLamp() {
+    const options = {
+        'Access-Control-Allow-Origin':'*',
+        mode: 'cors',
+        cache: 'default',
+        'Content-Type': 'application/json'}
+    
+       await Axios.get (('https://test-no-vercel.vercel.app/mqtt_off'),options)
+        .then(response => {}
+        )
+
+
+}
 
 return (
     <>
@@ -164,8 +189,8 @@ return (
         <span id="rele">N/D</span>
     </tr>
     <tr><td>
-	    <input type="button" id="lamp"   value="onLamp"    onClick= {onLamp()}/>
-        <input type="button" id="aqua_lamp"   value="onAquaLamp"    onClick={onLamp()}/>
+	    <input type="button" id="onlamp"   value="onLamp"    onClick= {onLamp()}/>
+        <input type="button" id="offlamp"   value="offLamp"    onClick={offLamp()}/>
 	    <input type="button" id="pump"  value="setPump" onClick={onLamp()}/>
 	    <input type="button" id="vent" value="setVent"    onClick={onLamp()}/>
     </td></tr>
