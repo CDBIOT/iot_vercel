@@ -189,10 +189,10 @@ return (
         <span id="rele">N/D</span>
     </tr>
     <tr><td>
-	    <input type="button" id="onlamp"   value="onLamp"    onClick= {onLamp()}/>
-        <input type="button" id="offlamp"   value="offLamp"    onClick={offLamp()}/>
-	    <input type="button" id="pump"  value="setPump" onClick={onLamp()}/>
-	    <input type="button" id="vent" value="setVent"    onClick={onLamp()}/>
+	    <input type="button" id="onlamp"   value="onLamp"    onClick= {onLamp}/>
+        <input type="button" id="offlamp"   value="offLamp"    onClick={offLamp}/>
+	    <input type="button" id="pump"  value="setPump" onClick={onLamp}/>
+	    <input type="button" id="vent" value="setVent"    onClick={offLamp}/>
     </td></tr>
     </table>
         </form>
