@@ -48,19 +48,6 @@ useEffect(() => {
     mqtt_show();
     }, [])
 
-async function onLamp() {
-    const options = {
-        'Access-Control-Allow-Origin':'*',
-        mode: 'cors',
-        cache: 'default',
-        'Content-Type': 'application/json'}
-    
-       await Axios.get (('https://test-no-vercel.vercel.app/mqtt_pub'),options)
-        .then(response => {}
-        )
-
-
-}
 function startTime() {
     const timer = setInterval(() =>{
         const date = new Date()
