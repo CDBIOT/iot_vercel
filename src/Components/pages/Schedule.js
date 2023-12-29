@@ -98,7 +98,7 @@ async function offLamp() {
         cache: 'default',
         'Content-Type': 'application/json'}
     
-       await Axios.get (('https://test-no-vercel.vercel.app/mqtt_node2'),options)
+       await Axios.get (('https://test-no-vercel.vercel.app/mqtt2'),options)
         .then(response => {
             console.log("Lamp OFF")
         }
