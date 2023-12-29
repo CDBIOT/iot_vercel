@@ -84,8 +84,10 @@ async function onLamp() {
         cache: 'default',
         'Content-Type': 'application/json'}
     
-       await Axios.get (('https://test-no-vercel.vercel.app/mqtt_on'),options)
-        .then(response => {}
+       await Axios.get (('https://test-no-vercel.vercel.app/mqtt'),options)
+        .then(response => {
+            console.log("Lamp ON")
+        }
         )
 }
 
@@ -96,8 +98,10 @@ async function offLamp() {
         cache: 'default',
         'Content-Type': 'application/json'}
     
-       await Axios.get (('https://test-no-vercel.vercel.app/mqtt_off'),options)
-        .then(response => {}
+       await Axios.get (('https://test-no-vercel.vercel.app/mqtt_node2'),options)
+        .then(response => {
+            console.log("Lamp OFF")
+        }
         )
 
 
