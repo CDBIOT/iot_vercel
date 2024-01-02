@@ -33,6 +33,7 @@ const client = (mqtt.connect(connectUrl,options))
   const[connectionStatus, setConnectionStatus] =useState(false)
   const[messages, setMessages]=useState([])
   const[temp,setTemp]= useState([])
+  const[local,setLocal]= useState([])
 
 useEffect(() =>{
   
@@ -61,7 +62,7 @@ setMessages(payload.toString())
 
  client.on('message', (topic2, payload) => {
        temp = payload
-             local= topic2
+      local= topic2
       console.log('Received Message:', topic, payload.toString())
       //res.status(200).json({m})
      })
