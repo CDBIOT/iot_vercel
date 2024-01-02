@@ -94,6 +94,38 @@ async function offLamp() {
 
 }
 
+async function onPump() {
+    const options = {
+        'Access-Control-Allow-Origin':'*',
+        mode: 'cors',
+        cache: 'default',
+        'Content-Type': 'application/json'}
+    
+       await Axios.get (('https://test-no-vercel.vercel.app/publisher'),options)
+        .then(response => {
+            console.log("Lamp OFF")
+        }
+        )
+
+
+}
+
+async function offPump() {
+    const options = {
+        'Access-Control-Allow-Origin':'*',
+        mode: 'cors',
+        cache: 'default',
+        'Content-Type': 'application/json'}
+    
+       await Axios.get (('https://test-no-vercel.vercel.app/subscriber'),options)
+        .then(response => {
+            console.log("Lamp OFF")
+        }
+        )
+
+
+}
+
 return (
     <>
     <h1>Schedule</h1>
@@ -182,8 +214,8 @@ return (
     <tr><td>
 	    <input type="button" id="onlamp"   value="onLamp"    onClick= {onLamp}/>
         <input type="button" id="offlamp"   value="offLamp"    onClick={offLamp}/>
-	    <input type="button" id="pump"  value="setPump" onClick={onLamp}/>
-	    <input type="button" id="vent" value="setVent"    onClick={offLamp}/>
+	    <input type="button" id="pump"  value="setPump" onClick={onPump}/>
+	    <input type="button" id="vent" value="setVent"    onClick={offPump}/>
     </td></tr>
     </table>
         </form>
