@@ -4,6 +4,9 @@ import Axios from "axios"
 
 function Schedule(){
 
+const topic = "Sala"
+const message = "1"
+
 const date = new Date();
 const [temps, setData] = useState({})
 const [temp,setTemp] = useState()
@@ -119,8 +122,7 @@ async function offPump() {
     
        await Axios.post (('https://test-no-vercel.vercel.app/subscriber'),options)
         .then(response => {
-            topic = "Sala"
-            message = "1"
+            {topic,message}
             console.log("Lamp OFF")
         }
         )
