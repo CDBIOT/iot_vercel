@@ -48,17 +48,17 @@ useEffect(() => {
     mqtt_show();
     }, [])
 
-function startTime() {
-    const timer = setInterval(() =>{
-        const date = new Date()
-        setDateTime({
-            hours:date.getHours(),
-            minutes:date.getMinutes(),
-            seconds :date.getSeconds()
-        })
-    },1000)
-    return ()=> clearInterval(timer)
-}
+// function startTime() {
+//     const timer = setInterval(() =>{
+//         const date = new Date()
+//         setDateTime({
+//             hours:date.getHours(),
+//             minutes:date.getMinutes(),
+//             seconds :date.getSeconds()
+//         })
+//     },1000)
+//     return ()=> clearInterval(timer)
+// }
 
 useEffect(() => {
    // startTime();
@@ -117,8 +117,10 @@ async function offPump() {
         cache: 'default',
         'Content-Type': 'application/json'}
     
-       await Axios.get (('https://test-no-vercel.vercel.app/subscriber'),options)
+       await Axios.post (('https://test-no-vercel.vercel.app/subscriber'),options)
         .then(response => {
+            topic = "Sala"
+            message = "1"
             console.log("Lamp OFF")
         }
         )
