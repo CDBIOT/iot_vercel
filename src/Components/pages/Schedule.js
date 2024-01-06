@@ -122,7 +122,7 @@ async function offPump() {
     
        await Axios.post (('https://test-no-vercel.vercel.app/subscriber'),options)
         .then(response => {
-            {topic,message}
+           // {topic,message}
             console.log("Lamp OFF")
         }
         )
