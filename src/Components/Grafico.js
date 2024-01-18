@@ -103,15 +103,12 @@ return(
    
           <Chart 
 	    chartType="AreaChart"
-<<<<<<< HEAD
 	    width = "400"
 	    height= "300"
-=======
-	    width = {'400px'}
-	    height= {'300px'}
->>>>>>> 3a7a0f69ca81a7a03bbd442304e1070d73c0eea9
 	    data = {dataArray2}
 	    options= {options}
+
+        
 	 /> 
           
       </section>
