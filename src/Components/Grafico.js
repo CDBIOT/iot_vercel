@@ -102,7 +102,7 @@ return(
 	    chartType="AreaChart"
 	    width = "400"
 	    height= "300"
-	    data = {data}
+	    data = {dataArray2}
 	    options= {options}
 	 /> 
           
