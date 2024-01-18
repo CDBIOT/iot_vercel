@@ -9,19 +9,20 @@ function Grafico(){
 
 const [temps, setTemperaturas] = useState()
 const [options, setOptions] =[ {title: 'Grafico de Temperaturas'}];
-const [data, setData] = useState('')
+const [dataArray2, setData] = useState('')
 const [startDate,setstartDate] =useState()
 const [finalDate,setfinalDate] =useState()
 
 async function Graf()
 {
+    const options = { 
+        'Access-Control-Allow-Origin':'*',
+        method: 'GET',	
+        mode: 'cors',
+        cache: 'default',
+        'Content-Type': 'application/json'}
 
-  const options = {
-    method: 'GET',
-    mode: 'cors',
-    cache: 'default'
-                   }
-  fetch('https://polar-beyond-82520.herokuapp.com/temps')
+  fetch('https://test-no-vercel.vercel.app/temps', options)
   .then(function (response){
     return response.text()})
     .then(data=>{
@@ -37,6 +38,7 @@ async function Graf()
     {
         dataArray2.push([dataArray[i].dia, (dataArray[i].temperatura)]);
     }
+    setData(dataArray2)
 
 }
 )
@@ -98,10 +100,16 @@ return(
               </div>
           </form>
           
-    <Chart 
+   
+          <Chart 
 	    chartType="AreaChart"
+<<<<<<< HEAD
 	    width = "400"
 	    height= "300"
+=======
+	    width = {'400px'}
+	    height= {'300px'}
+>>>>>>> 3a7a0f69ca81a7a03bbd442304e1070d73c0eea9
 	    data = {dataArray2}
 	    options= {options}
 	 /> 
