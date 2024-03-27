@@ -103,10 +103,12 @@ return(
    
           <Chart 
 	    chartType="AreaChart"
-	    width = {'400px'}
-	    height= {'300px'}
+	    width = "400"
+	    height= "300"
 	    data = {dataArray2}
 	    options= {options}
+
+        
 	 /> 
           
       </section>
