@@ -164,7 +164,8 @@ return (
         <div>
         <form action="Relogio" method="post">
         <table>
-            <th colspan = {6}><h2>Set Time Light</h2> </th>
+<tr><td><h1 colspan = {6}  className = {styles.thead}>Disparo </h1></td></tr>
+            <th colspan = {6} ><h2>Set Time Light</h2> </th>
             <tr><td><input id="initDate" value={initDate}  type="date" onChange={(e)=>setInitDate(e.target.value)}  name="initDate" />
                 <label >Data Inicial: {initDate}</label>
             </td> 
@@ -181,7 +182,7 @@ return (
 
 <tr><h1>{dateTime.hours} : {dateTime.minutes} : {dateTime.seconds}</h1></tr>
 
-<tr><td><h1 colspan = {6}>Disparo </h1></td></tr>
+<tr><td><h1 colspan = {6}  className = {styles.thead}>Disparo </h1></td></tr>
     <tr> <td>
 
     <select onChange={(e) => setHora(e.target.value)}>
@@ -205,7 +206,7 @@ return (
 
 <br></br>
 
-    <tr><th colspan = {6}><h2>Tempo ligado </h2></th></tr>
+    <tr><th colspan = {6} className = {styles.thead}><h2>Tempo ligado </h2></th></tr>
 	<tr>
 	    <td><input type="text" id="tempod" value="" maxlength="10" /></td> 
 	    <td><h2 id="tempo"></h2></td>
