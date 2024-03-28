@@ -23,9 +23,16 @@ const [dateTime , setDateTime] = useState({
     minutes: date.getMinutes(),
     seconds: date.getSeconds()
 })
-const horas= [0,1,2,3,4,5,6,7,8,9,10,11,12]
-const minutos=[0,1,2,3,4,5,6,7,8,9,10]
-console.log(horas)
+const horas = [];
+for (let i = 0; i <= 24; i++) {
+  horas.push(i);
+}
+
+const minutos = [];
+for (let i = 1; i <= 60; i++) {
+  minutos.push(i);
+}
+
 
 async function mqtt_show() {
 	const options = {
@@ -164,11 +171,12 @@ return (
 <div>
     <form action="Relogio" method="post">
         <table className = {styles.table}>
-            <tr className={styles.tr}><td><h1 className = {styles.thead}>Disparo </h1></td></tr>
-                <th className={styles.thead}><h2 className={styles.h2}>Set Time Light</h2> </th>
-            <tr className={styles.tr}><label >Data Inicial: </label>
-                <td><input id="initDate" value={initDate}  type="date" onChange={(e)=>setInitDate(e.target.value)}  name="initDate" /></td></tr>
-            <tr className={styles.tr}> <label>Data final: </label>
+            <tr className={styles.tr}><td>Disparo</td></tr>
+            <tr className={styles.tr}>
+                <td className={styles.td}><label>Data Inicial: </label></td>
+                <td className={styles.td}><input id="initDate" value={initDate}  type="date" onChange={(e)=>setInitDate(e.target.value)}  name="initDate" /></td></tr>
+            <tr className={styles.tr}>
+                <td className={styles.td}><label>Data final: </label></td>
                 <td><input id="finalDate" value={finalDate}  type="date" onChange={(e)=>setFinalDate(e.target.value)}  name="finalDate" /></td>
             </tr>
        
@@ -180,7 +188,7 @@ return (
         <select onChange={(e) => setHora(e.target.value)}>
             <option value="" size="6" >Select Hora  </option>   
                 {horas.map(hora=>{
-                 return<option value = {hora} key={hora}> HORA:  <input type="text" 	name = "horad"id= "hd" value = {Hora}  size="2" /> </option>
+                 return<option value = {hora} key={hora}> Hora: {Hora} <input type="text" 	name = "horad"id= "hd" value = {Hora}  size="2" /> </option>
                  
                  })}
         </select>
@@ -188,7 +196,7 @@ return (
         <select onChange={e =>setMinuto(e.target.value)}> 
             <option value={Minuto}> Select min </option>  
                 {minutos.map(min=>{
-                return<option value= {min} key={min}> MIN: <input type="text"  name = "mind" id= "md" value = {Minuto}  size="6" /> </option>
+                return<option value= {min} key={min}> MIN: {Minuto} <input type="text"  name = "mind" id= "md" value = {Minuto}  size="6" /> </option>
                 })}
         </select>
 	
