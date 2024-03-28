@@ -164,9 +164,9 @@ return (
 <div>
     <form action="Relogio" method="post">
         <table className = {styles.table}>
-            <tr><td><h1 className = {styles.thead}>Disparo </h1></td></tr>
+            <tr className={styles.tr}><td><h1 className = {styles.thead}>Disparo </h1></td></tr>
                 <th className={styles.thead}><h2 className={styles.h2}>Set Time Light</h2> </th>
-            <tr><label >Data Inicial: </label>
+            <trclassName={styles.tr}><label >Data Inicial: </label>
                 <td><input id="initDate" value={initDate}  type="date" onChange={(e)=>setInitDate(e.target.value)}  name="initDate" />
                 <label>Data final: </label>
                 <input id="finalDate" value={finalDate}  type="date" onChange={(e)=>setFinalDate(e.target.value)}  name="finalDate" /></td>
@@ -174,9 +174,7 @@ return (
        
 <br></br>
 
-        <tr><h2 className={styles.h2}>{dateTime.hours} : {dateTime.minutes} : {dateTime.seconds}</h2></tr>
-        <tr><td><h1 colspan = {6}  className = {styles.thead}>Disparo </h1></td></tr>
-        <tr> <td>
+        <tr className={styles.tr}><h2 className={styles.h2}>{dateTime.hours} : {dateTime.minutes} : {dateTime.seconds}</h2></tr>
 
     <select onChange={(e) => setHora(e.target.value)}>
         <option value="" size="6" >Select Hora  </option>   
