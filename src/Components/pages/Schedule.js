@@ -166,10 +166,10 @@ return (
         <table className = {styles.table}>
             <tr><td><h1 className = {styles.thead}>Disparo </h1></td></tr>
                 <th className={styles.thead}><h2 className={styles.h2}>Set Time Light</h2> </th>
-                <label >Data Inicial: </label>
-                <tr><td><input id="initDate" value={initDate}  type="date" onChange={(e)=>setInitDate(e.target.value)}  name="initDate" /></td> 
+            <tr><label >Data Inicial: </label>
+                <td><input id="initDate" value={initDate}  type="date" onChange={(e)=>setInitDate(e.target.value)}  name="initDate" />
                 <label>Data final: </label>
-                <td><input id="finalDate" value={finalDate}  type="date" onChange={(e)=>setFinalDate(e.target.value)}  name="finalDate" /></td>
+                <input id="finalDate" value={finalDate}  type="date" onChange={(e)=>setFinalDate(e.target.value)}  name="finalDate" /></td>
             </tr>
        
 <br></br>
