@@ -222,7 +222,7 @@ return (
             <span id="rele">N/D</span>
         </tr>
         <tr><td>
-	        <input type="button" id="onlamp"   value="onLamp"    onClick= {onLamp}/>
+	        <input className={styles.button} type="button" id="onlamp"   value="onLamp"    onClick= {onLamp}/>
             <input type="button" id="offlamp"   value="offLamp"    onClick={offLamp}/>
 	        <input type="button" id="pump"  value="setPump" onClick={onPump}/>
 	        <input type="button" id="vent" value="setVent"    onClick={offPump}/>
