@@ -133,8 +133,8 @@ async function offPump() {
 return (
     <>
     <h1>Schedule</h1>
-    <table>
-    <tr><td className={styles.td}  >Temperatura: {temps[temp]}  Local: { local } Data: { dia } / { mes } / { ano }</td></tr>
+    <table className = {styles.table}>
+    <tr><td className={styles.thead}  >Temperatura: {temps[temp]} </td><td> Local: { local }</td><td> Data: { dia } / { mes } / { ano }</td></tr>
     </table>
     {/* <div className = {styles.temp_show}>
         <table>
@@ -163,7 +163,7 @@ return (
     <section>
         <div>
         <form action="Relogio" method="post">
-        <table>
+        <table className = {styles.table}>
 <tr><td><h1 colspan = {6}  className = {styles.thead}>Disparo </h1></td></tr>
             <th colspan = {6} ><h2>Set Time Light</h2> </th>
             <tr><td><input id="initDate" value={initDate}  type="date" onChange={(e)=>setInitDate(e.target.value)}  name="initDate" />
@@ -175,7 +175,7 @@ return (
             </tr>
         </table>
 
-<table>
+<table className = {styles.table}>
     <br></br>
 
 <tr><th colspan = {6}><h2>Relógio Iot</h2></th></tr>
