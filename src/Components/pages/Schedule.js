@@ -133,9 +133,9 @@ async function offPump() {
 return (
     <>
     <h1>Schedule</h1>
-    <table className = {styles.table}>
-    <tr><td className={styles.thead}  >Temperatura: {temps[temp]} </td><td> Local: { local }</td><td> Data: { dia } / { mes } / { ano }</td></tr>
-    </table>
+        <table className = {styles.table}>
+            <tr><td className={styles.thead}  >Temperatura: {temps[temp]} </td><td> Local: { local }</td><td> Data: { dia } / { mes } / { ano }</td></tr>
+        </table>
     {/* <div className = {styles.temp_show}>
         <table>
            
@@ -161,70 +161,67 @@ return (
     </div> */}
     
     <section>
-        <div>
-        <form action="Relogio" method="post">
+<div>
+    <form action="Relogio" method="post">
         <table className = {styles.table}>
-<tr><td><h1 colspan = {6}  className = {styles.thead}>Disparo </h1></td></tr>
-            <th colspan = {6} ><h2>Set Time Light</h2> </th>
-            <tr><td><input id="initDate" value={initDate}  type="date" onChange={(e)=>setInitDate(e.target.value)}  name="initDate" />
-                <label >Data Inicial: {initDate}</label>
-            </td> 
-            <td><input id="finalDate" value={finalDate}  type="date" onChange={(e)=>setFinalDate(e.target.value)}  name="finalDate" /> 
-                <label>Data final: {finalDate}</label>
-            </td>
+            <tr><td><h1 className = {styles.thead}>Disparo </h1></td></tr>
+                <th className={styles.thead}><h2 className={styles.h2}>Set Time Light</h2> </th>
+                <label >Data Inicial: </label>
+                <tr><td><input id="initDate" value={initDate}  type="date" onChange={(e)=>setInitDate(e.target.value)}  name="initDate" /></td> 
+                <label>Data final: </label>
+                <td><input id="finalDate" value={finalDate}  type="date" onChange={(e)=>setFinalDate(e.target.value)}  name="finalDate" /></td>
             </tr>
-        </table>
-
-<table className = {styles.table}>
-    <br></br>
-
-<tr><th colspan = {6}><h2>Relógio Iot</h2></th></tr>
-
-<tr><h1>{dateTime.hours} : {dateTime.minutes} : {dateTime.seconds}</h1></tr>
-
-<tr><td><h1 colspan = {6}  className = {styles.thead}>Disparo </h1></td></tr>
-    <tr> <td>
-
-    <select onChange={(e) => setHora(e.target.value)}>
-    <option value="" size="6" >Select Hora  </option>   
-    {horas.map(hora=>{
-        return<option value = {hora} key={hora}>{hora}  </option>
-        })}
-    </select>
-
-    <input type="text" 	name = "horad"id= "hd" value = {Hora}  size="2" />
-
-    <select onChange={e =>setMinuto(e.target.value)}> 
-    <option value={Minuto}> Select min </option>  
-        {minutos.map(min=>{
-            return<option value= {min} key={min}>{min} </option>
-        })}
-        </select>
-	<input type="text"  name = "mind" id= "md" value = {Minuto}  size="6" /> 
-     </td> 
-</tr>
-
+       
 <br></br>
 
-    <tr><th colspan = {6} className = {styles.thead}><h2>Tempo ligado </h2></th></tr>
-	<tr>
-	    <td><input type="text" id="tempod" value="" maxlength="10" /></td> 
-	    <td><h2 id="tempo"></h2></td>
-         <td><h1 id = "disp"> </h1></td>
-    </tr>
-    <tr> <th colspan ={6}>Estado</th></tr>
-    <tr>
-        <span id="rele">N/D</span>
-    </tr>
-    <tr><td>
-	    <input type="button" id="onlamp"   value="onLamp"    onClick= {onLamp}/>
-        <input type="button" id="offlamp"   value="offLamp"    onClick={offLamp}/>
-	    <input type="button" id="pump"  value="setPump" onClick={onPump}/>
-	    <input type="button" id="vent" value="setVent"    onClick={offPump}/>
-    </td></tr>
+        <tr><h2 className={styles.h2}>{dateTime.hours} : {dateTime.minutes} : {dateTime.seconds}</h2></tr>
+        <tr><td><h1 colspan = {6}  className = {styles.thead}>Disparo </h1></td></tr>
+        <tr> <td>
+
+    <select onChange={(e) => setHora(e.target.value)}>
+        <option value="" size="6" >Select Hora  </option>   
+            {horas.map(hora=>{
+             return<option value = {hora} key={hora}>{hora}  </option>
+             })}
+    </select>
+
+        <input type="text" 	name = "horad"id= "hd" value = {Hora}  size="2" />
+
+    <select onChange={e =>setMinuto(e.target.value)}> 
+        <option value={Minuto}> Select min </option>  
+            {minutos.map(min=>{
+            return<option value= {min} key={min}>{min} </option>
+            })}
+    </select>
+	
+            <input type="text"  name = "mind" id= "md" value = {Minuto}  size="6" /> 
+        </td> 
+        </tr>
+
+
+<br></br>
+        <tr><th className = {styles.thead}><h2>Tempo ligado </h2></th></tr>
+	    <tr>
+	        <td><input type="text" id="tempod" value="" maxlength="10" /></td> 
+	        <td><h2 id="tempo"></h2></td>
+            <td><h1 id = "disp"> </h1></td>
+        </tr>
+        <tr> <th colspan ={6}>Estado</th></tr>
+        <tr>
+            <span id="rele">N/D</span>
+        </tr>
+        <tr><td>
+	        <input type="button" id="onlamp"   value="onLamp"    onClick= {onLamp}/>
+            <input type="button" id="offlamp"   value="offLamp"    onClick={offLamp}/>
+	        <input type="button" id="pump"  value="setPump" onClick={onPump}/>
+	        <input type="button" id="vent" value="setVent"    onClick={offPump}/>
+        </td></tr>
     </table>
-        </form>
+
+</form>
+
     </div>
+
 </section>
 
     </>
