@@ -188,7 +188,7 @@ return (
         <select onChange={(e) => setHora(e.target.value)}>
             <option value="" size="6" >Select Hora  </option>   
                 {horas.map(hora=>{
-                 return<option value = {hora} key={hora}> Hora: {Hora} <input type="text" 	name = "horad"id= "hd" value = {Hora}  size="2" /> </option>
+                 return<option value = {hora} key={hora}> {Hora} <input type="text" 	name = "horad"id= "hd" value = {Hora}  size="2" /> </option>
                  
                  })}
         </select>
@@ -196,7 +196,7 @@ return (
         <select onChange={e =>setMinuto(e.target.value)}> 
             <option value={Minuto}> Select min </option>  
                 {minutos.map(min=>{
-                return<option value= {min} key={min}> MIN: {Minuto} <input type="text"  name = "mind" id= "md" value = {Minuto}  size="6" /> </option>
+                return<option value= '' key={min}> {Minuto} <input type="text"  name = "mind" id= "md" value = {Minuto}  size="6" /> </option>
                 })}
         </select>
 	
