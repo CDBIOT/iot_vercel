@@ -142,6 +142,9 @@ return (
     <h1>Schedule</h1>
         <table className = {styles.table}>
             <tr><td className={styles.thead}  >Temperatura: {temps[temp]} </td><td> Local: { local }</td><td> Data: { dia } / { mes } / { ano }</td></tr>
+            
+
+        <tr className={styles.tr}><h2 className={styles.h2}>{dateTime.hours} : {dateTime.minutes} : {dateTime.seconds}</h2></tr>
         </table>
     {/* <div className = {styles.temp_show}>
         <table>
@@ -181,27 +184,29 @@ return (
             </tr>
        
 <br></br>
-
-        <tr className={styles.tr}><h2 className={styles.h2}>{dateTime.hours} : {dateTime.minutes} : {dateTime.seconds}</h2></tr>
         <tr className={styles.tr}>
         <td className={styles.td}>
-        <label>Set Hour:  </label>
+        <label>Set Hour:  </label></td>
+        <td className={styles.td}>
         <select onChange={(e) => setHora(e.target.value)}>
-            <option value="" size="6" >Select Hora  </option>   
+            <option value="" size="6" >Select Hour  </option>   
                 {horas.map(hora=>{
-                 return<option value = {hora} key={hora}> {Hora} <input type="text" 	name = "horad"id= "hd" value = {Hora}  size="2" /> </option>
-                 
+                 return<option value = {hora} key={hora}> {hora} <input type="text" 	name = "horad"id= "hd" value = {Hora}  size="2" /> </option>
                  })}
         </select>
-        <label>Set Minutes:  </label>
+        </td>
+        </tr>
+        <tr className={styles.tr}>
+        <td className={styles.td}>
+        <label>Set Minutes:  </label></td>
+        <td className={styles.td}>
         <select onChange={e =>setMinuto(e.target.value)}> 
             <option value={Minuto}> Select min </option>  
                 {minutos.map(min=>{
-                return<option value= {min} key={min}> {Minuto} <input type="text"  name = "mind" id= "md" value = {Minuto}  size="6" /> </option>
+                return<option value= {min} key={min}> {min} <input type="text"  name = "mind" id= "md" value = {Minuto}  size="6" /> </option>
                 })}
         </select>
-	
-            
+
         </td> 
         </tr>
 
@@ -213,8 +218,7 @@ return (
 	        <td><h2 id="tempo"></h2></td>
             <td><h1 id = "disp"> </h1></td>
         </tr>
-        <tr> <th colspan ={6}>Estado</th></tr>
-        <tr>
+        <tr> <th colspan ={6}>Estado</th>
             <span id="rele">N/D</span>
         </tr>
         <tr><td>
