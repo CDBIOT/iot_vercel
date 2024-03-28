@@ -185,6 +185,7 @@ return (
         <tr className={styles.tr}><h2 className={styles.h2}>{dateTime.hours} : {dateTime.minutes} : {dateTime.seconds}</h2></tr>
         <tr className={styles.tr}>
         <td className={styles.td}>
+        <label>Set Hour:  </label>
         <select onChange={(e) => setHora(e.target.value)}>
             <option value="" size="6" >Select Hora  </option>   
                 {horas.map(hora=>{
@@ -192,7 +193,7 @@ return (
                  
                  })}
         </select>
-
+        <label>Set Minutes:  </label>
         <select onChange={e =>setMinuto(e.target.value)}> 
             <option value={Minuto}> Select min </option>  
                 {minutos.map(min=>{
