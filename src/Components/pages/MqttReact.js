@@ -5,8 +5,11 @@ import React, { useState , useEffect } from "react"
 import {Connector} from "mqtt-react-hooks"
 
 
-
-const topic2 = 'Quarto'
+const topic1 = 'bh/inTopic'
+const topic2 = 'room_light'
+const topic3 = 'aqua_light'
+const topic4 = 'Quarto'
+const topic5 = 'Sala'
 
 function MqttReact(){
    const topic = 'Sala';
