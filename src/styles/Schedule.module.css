@@ -114,5 +114,5 @@ input[type=image]{
     padding: 20px;
     margin: 20px;
     border-radius: 10px;
-    background-image: linear-gradient(45deg, white, blue);
+    background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.278), rgba(13, 13, 145, 0.607));
 }
