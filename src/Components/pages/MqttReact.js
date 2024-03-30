@@ -25,10 +25,10 @@ function MqttReact(){
         clientId,
         clean: true,
         connectTimeout: 4000,
-        username: 'emqx',
+        username: 'cdbiot123',
         password: 'public',
         reconnectPeriod: 3000,
-        topic: "Sala"
+        topic: topic
      }
 
 const client = (mqtt.connect(connectUrl,options))
