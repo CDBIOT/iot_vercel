@@ -28,12 +28,7 @@ function MqttReact(){
         username: 'emqx',
         password: 'public',
         reconnectPeriod: 3000,
-        will: {
-          topic: topic1,
-          payload: 1,
-          qos: 0,
-          retain: false
-        }
+       
      }
 
 const client = (mqtt.connect(connectUrl,options))
@@ -108,7 +103,7 @@ console.log("Messages: " +messages)
 				<table className = {styles.table}>   
 					<tr><th className = {styles.thead} colSpan={2}>TEMPERATURA DA SALA </th></tr>
 					<tr>
-						 <td>Local: </td><td colSpan={4}><h2>{topic}</h2></td>
+						<td>Local: </td><td colSpan={4}><h2>{topic}</h2></td>
 						<td>Temp: </td><td colSpan={4}><h2>{payload}</h2></td> 
 					</tr>
         </table> 
