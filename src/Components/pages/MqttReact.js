@@ -45,35 +45,21 @@ useEffect(() =>{
  client.on('connect', () => {
    setConnectionStatus(true)
    console.log('Connected')
-   setConnectionStatus(true)
  })}catch (error){console.log('mqtt.connect error',error)}
 
-client.subscribe('Sala', () => {
+client.subscribe(topic, () => {
   console.log("Subscribe to topic:", +topic)
+
+}) 
 
 client.on('message', (topic, payload) => {
 setMessages(payload.toString())
      //temp = payload
      //local= topic
-   console.log('Received Message:', + payload.toString())
+     console.log('Received Message:', + payload.toString(),"From:", +topic.toString())
    // res.status(200).json({m})
  })
 
- client.on('connect', () => {
-   console.log('Connected')
-  client.subscribe([topic2], () => {
-     console.log(`Subscribe to topic '${topic2}'`)
-
- client.on('message', (topic2, payload) => {
-       temp = payload
-      local= topic2
-      console.log('Received Message:', topic, payload.toString())
-      //res.status(200).json({m})
-     })
-   })
- })
-
-}) 
 
  // client.publish(topic, 'nodejs mqtt test', { qos: 0, retain: true }, (error) => {
 //  if (error) {
@@ -82,7 +68,7 @@ setMessages(payload.toString())
  // })
 
 },[]);
-console.log("Connections: " +connectionStatus)
+console.log("Connection: " +connectionStatus)
 console.log("Messages: " +messages)
 
 // setInterval(() => {
@@ -99,7 +85,7 @@ console.log("Messages: " +messages)
  return(
   <div>
    
-    <label >Status: {connectionStatus}</label>
+    <label >Status:<h2> {connectionStatus}</h2></label>
 				<table className = {styles.table}>   
 					<tr><th className = {styles.thead} colSpan={2}>TEMPERATURA DA SALA </th></tr>
 					<tr>
