@@ -28,7 +28,7 @@ function MqttReact(){
         username: 'emqx',
         password: 'public',
         reconnectPeriod: 3000,
-       
+        topic: "Sala"
      }
 
 const client = (mqtt.connect(connectUrl,options))
