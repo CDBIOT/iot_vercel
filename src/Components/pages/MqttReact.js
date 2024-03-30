@@ -22,13 +22,18 @@ function MqttReact(){
    
    const connectUrl = 'wss://broker.mqtt-dashboard.com:8884'
    const options = {
-    
         clientId,
         clean: true,
         connectTimeout: 4000,
         username: 'emqx',
         password: 'public',
         reconnectPeriod: 3000,
+        will: {
+          topic: topic1,
+          payload: 1,
+          qos: 0,
+          retain: false
+        }
      }
 
 const client = (mqtt.connect(connectUrl,options))
