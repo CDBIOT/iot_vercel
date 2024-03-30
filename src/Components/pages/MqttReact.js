@@ -20,7 +20,7 @@ function MqttReact(){
    const port = '1883'
    const clientId = 'mqttjs_'+ Math.random().toString(16).slice(3)
    
-   const connectUrl = 'mqtt:broker.mqtt-dashboard.com:8884'
+   const connectUrl = 'http://broker.mqtt-dashboard.com:8884'
    const options = {
     
         clientId,
