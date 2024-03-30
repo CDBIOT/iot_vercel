@@ -37,6 +37,7 @@ for (let i = 1; i <= 60; i++) {
 async function mqtt_show() {
 	const options = {
     'Access-Control-Allow-Origin':'*',
+    method: 'GET',
     mode: 'cors',
     cache: 'default',
     'Content-Type': 'application/json'}
@@ -77,6 +78,7 @@ useEffect(() => {
 async function onLamp() {
     const options = {
         'Access-Control-Allow-Origin':'*',
+        method: 'GET',
         mode: 'cors',
         cache: 'default',
         'Content-Type': 'application/json'}
@@ -107,6 +109,7 @@ async function offLamp() {
 async function onPump() {
     const options = {
         'Access-Control-Allow-Origin':'*',
+        method: 'GET',
         mode: 'cors',
         cache: 'default',
         'Content-Type': 'application/json'}
@@ -123,11 +126,12 @@ async function onPump() {
 async function offPump() {
     const options = {
         'Access-Control-Allow-Origin':'*',
+        method: 'GET',
         mode: 'cors',
         cache: 'default',
         'Content-Type': 'application/json'}
     
-       await Axios.post (('https://test-no-vercel.vercel.app/subscriber'),options)
+await Axios.post (('https://test-no-vercel.vercel.app/subscriber'),options)
         .then(response => {
            // {topic,message}
             console.log("Lamp OFF")
