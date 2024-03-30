@@ -20,7 +20,7 @@ function MqttReact(){
    const port = '1883'
    const clientId = 'mqttjs_'+ Math.random().toString(16).slice(3)
    
-   const connectUrl = 'http://broker.mqtt-dashboard.com:8884'
+   const connectUrl = 'wss://broker.mqtt-dashboard.com:8884'
    const options = {
     
         clientId,
@@ -95,10 +95,10 @@ console.log("Messages: " +messages)
   
 // }, 1000);
 
-
+//<Connector brokerUrl='broker.mqtt-dashboard.com:1883'/>
  return(
   <div>
-    <Connector brokerUrl='broker.mqtt-dashboard.com:1883'/>
+   
     <label >Status: {connectionStatus}</label>
 				<table className = {styles.table}>   
 					<tr><th className = {styles.thead} colSpan={2}>TEMPERATURA DA SALA </th></tr>
