@@ -15,11 +15,12 @@ function MqttReact(){
    const topic = 'Sala';
    const path = '/mqtt';
    const payload = 'temp';
+   const hosthive = "5d3be4977c10482289edf71c15f420fe.s1.eu.hivemq.cloud";
    const host = 'broker.mqtt-dashboard.com'
    const port = '1883'
    const clientId = 'mqttjs_'+ Math.random().toString(16).slice(3)
    
-   const connectUrl = 'mqtt:broker.mqtt-dashboard.com:8000'
+   const connectUrl = 'mqtt:broker.mqtt-dashboard.com:8884'
    const options = {
     
         clientId,
