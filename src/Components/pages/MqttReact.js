@@ -85,8 +85,8 @@ console.log("Messages: " +messages)
  return(
   <div>
    
-<Connector brokerUrl='broker.mqtt-dashboard.com:1883'/>
-<Connector brokerUrl='5d3be4977c10482289edf71c15f420fe.s1.eu.hivemq.cloud' />
+<Connector brokerUrl='wss://broker.mqtt-dashboard.com:1883'/>
+<Connector brokerUrl='wss://5d3be4977c10482289edf71c15f420fe.s1.eu.hivemq.cloud' />
 <Connector brokerUrl='wss://broker.mqtt-dashboard.com:8884' />
     <label >Status:<h2> {connectionStatus}</h2></label>
 				<table className = {styles.table}>   
