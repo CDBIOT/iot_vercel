@@ -3,6 +3,7 @@ import mqtt from "mqtt"
 import styles from "../../styles/Graphics.module.css"
 import React, { useState , useEffect } from "react"
 import {Connector} from "mqtt-react-hooks"
+import { useMqttState } from 'mqtt-react-hooks';
 
 
 const topic1 = 'bh/inTopic'
@@ -30,11 +31,11 @@ function MqttReact(){
         reconnectPeriod: 3000,
         topic: topic
      }
-
+const {connectionStatus} = useMqttState();
 const client = (mqtt.connect(connectUrl,options))
 
   //const[client, setClient] = useState(null)
-  const[connectionStatus, setConnectionStatus] =useState(false)
+  //const[connectionStatus, setConnectionStatus] =useState(false)
   const[messages, setMessages]=useState([])
   const[temp,setTemp]= useState([])
   const[local,setLocal]= useState([])
@@ -43,7 +44,7 @@ useEffect(() =>{
   
 // try{
  client.on('connect', () => {
-   setConnectionStatus(true)
+  // setConnectionStatus(true)
    console.log('Connected')
  }
  
@@ -53,9 +54,9 @@ useEffect(() =>{
 
 client.subscribe(topic, () => {
   console.log("Subscribe to topic:", +topic)
-  if (error) {
-      console.error(error)
-    }
+  //if (error) {
+  //    console.error(error)
+   // }
 
 }) 
 
