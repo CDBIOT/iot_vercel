@@ -41,16 +41,28 @@ const client = (mqtt.connect(connectUrl,options))
 
 useEffect(() =>{
   
-   try{
+// try{
  client.on('connect', () => {
    setConnectionStatus(true)
    console.log('Connected')
- })}catch (error){console.log('mqtt.connect error',error)}
+ }
+ 
+ 
+ )
+//}catch (error){console.log('mqtt.connect error',error)}
 
 client.subscribe(topic, () => {
   console.log("Subscribe to topic:", +topic)
+  if (error) {
+      console.error(error)
+    }
 
 }) 
+
+client.stream.on('error', (err) => {
+  console.error(`Connection failed: ${err.message}`);
+  client.end();
+});
 
 client.on('message', (topic, payload) => {
 setMessages(payload.toString())
