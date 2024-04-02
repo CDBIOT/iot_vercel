@@ -42,7 +42,7 @@ async function mqtt_show() {
     cache: 'default',
     'Content-Type': 'application/json'}
 
-   await Axios.get (('https://test-no-vercel.vercel.app/mqtt'),options)
+await Axios.get (('https://test-no-vercel.vercel.app/mqtt'),options)
 	.then(response => {
 	 setData(response.data.vm)
      setTemp(response.data.vm.temp)
@@ -131,7 +131,7 @@ async function offPump() {
         cache: 'default',
         'Content-Type': 'application/json'}
     
-await Axios.post (('https://test-no-vercel.vercel.app/subscriber'),options)
+await Axios.get (('https://test-no-vercel.vercel.app/subscriber'),options)
         .then(response => {
            // {topic,message}
             console.log("Lamp OFF")
