@@ -19,19 +19,25 @@ function MqttReact(){
    const hosthive = "5d3be4977c10482289edf71c15f420fe.s1.eu.hivemq.cloud";
    const host = 'broker.mqtt-dashboard.com'
    const port = '1883'
-   const clientId = 'mqttjs_'+ Math.random().toString(16).slice(3)
+   const clientId = "cdbiot123";
+
+   //const clientId = 'mqttjs_'+ Math.random().toString(16).slice(3)
    
-   const connectUrl = 'wss://broker.mqtt-dashboard.com:8884'
+   const connectUrl = 'wss://broker.mqtt-dashboard.com'
    const options = {
-        clientId,
+        host: host,
+        port: port,
+        clientId: clientId,
         clean: true,
         connectTimeout: 4000,
-        username: 'cdbiot123',
-        password: 'public',
-        reconnectPeriod: 3000,
+        username: 'test',
+        password: 'test',
+        reconnectPeriod: 1000,
         topic: topic
      }
+     
 const {connectionStatus} = useMqttState();
+
 const client = (mqtt.connect(connectUrl,options))
 
   //const[client, setClient] = useState(null)
@@ -99,7 +105,7 @@ console.log("Messages: " +messages)
   <div>
    
 <Connector brokerUrl='wss://broker.mqtt-dashboard.com:1883'/>
-<Connector brokerUrl='wss://5d3be4977c10482289edf71c15f420fe.s1.eu.hivemq.cloud' />
+<Connector brokerUrl='wss://5d3be4977c10482289edf71c15f420fe.s1.eu.hivemq.cloud:8884' />
 <Connector brokerUrl='wss://broker.mqtt-dashboard.com:8884' />
     <label >Status:<h2> {connectionStatus}</h2></label>
 				<table className = {styles.table}>   
