@@ -11,6 +11,8 @@ import RealTime from './Components/pages/RealTime'
 import Energy from './Components/pages/Energy';
 import MqttReact from './Components/pages/MqttReact';
 
+import BotPress from './Components/pages/BotPress';
+
 
 function App() {
 
@@ -30,6 +32,7 @@ return (
             <Route path="/Users"    element={<Users />} ></Route>
             <Route path='/RealTime' element={<RealTime />}></Route>
             <Route path='/MqttReact' element={<MqttReact />}></Route> 
+            <Route path='/BotPress' element={<BotPress />}></Route> 
          </Routes>
     </Router>
   </div>
