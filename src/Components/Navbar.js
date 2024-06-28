@@ -39,6 +39,9 @@ return(
         <li className={styles.item}>
             <Link to= "/Users"> Users</Link>
         </li>
+        <li className={styles.item}>
+            <Link to= "/BotPress"> Bot</Link>
+        </li>
     </ul>
    </nav>
 )
