@@ -23,7 +23,7 @@ function MqttReact(){
 
    //const clientId = 'mqttjs_'+ Math.random().toString(16).slice(3)
    
-   const connectUrl = 'wss://5d3be4977c10482289edf71c15f420fe.s1.eu.hivemq.cloud'
+   const connectUrl = 'wss://'+ ${host} + ":"+ ${port}+"/mqtt";
    const options = {
         host: host,
         port: port,
@@ -48,10 +48,19 @@ const client = (mqtt.connect(connectUrl,options))
 
 useEffect(() =>{
   
+const client = (mqtt.connect(connectUrl,options))
+
+
+if(!clientRef.current){
+  const client = mqtt.connect(url,options);
+  clientRef.current = client
+}
+
+
  try{
  client.on('connect', () => {
    setConnectionStatus(true)
-   console.log('Connected')
+   console.log('Connected to MQTT broker')
  }
  
  )
