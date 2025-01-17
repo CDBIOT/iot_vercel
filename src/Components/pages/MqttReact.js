@@ -41,7 +41,7 @@ const {connectionStatus} = useMqttState();
 const client = (mqtt.connect(connectUrl,options))
 
   //const[client, setClient] = useState(null)
-  const[connectionStatus, setConnectionStatus] =useState(false)
+ // const[connectionStatus, setConnectionStatus] =useState(false)
   const[messages, setMessages]=useState([])
   const[temp,setTemp]= useState([])
   const[local,setLocal]= useState([])
