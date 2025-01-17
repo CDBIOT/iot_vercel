@@ -123,8 +123,7 @@ console.log("Messages: " +messages)
 					<tr><th className = {styles.thead} colSpan={2}>TEMPERATURA DA SALA </th></tr>
 					<tr>
 						<td>Local: </td><td colSpan={4}><h2>{topic}</h2></td>
-						<td>Temp: </td><td colSpan={4}><h2>{payload}</h2></td> 
-            <td>Message: </td><td colSpan={4}><h2>{messages}</h2></td> 
+						<td>Temp: </td><td colSpan={4}><h2>{messages}</h2></td> 
 
 					</tr>
         </table> 
