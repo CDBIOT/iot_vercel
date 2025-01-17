@@ -29,10 +29,10 @@ function MqttReact(){
         port: port,
         clientId: clientId,
         clean: true,
-        connectTimeout: 4000,
+        connectTimeout: 5000,
         username: 'test',
         password: 'test',
-        reconnectPeriod: 1000,
+        reconnectPeriod: 10000,
         topic: topic
      }
      
@@ -41,22 +41,21 @@ const {connectionStatus} = useMqttState();
 const client = (mqtt.connect(connectUrl,options))
 
   //const[client, setClient] = useState(null)
-  //const[connectionStatus, setConnectionStatus] =useState(false)
+  const[connectionStatus, setConnectionStatus] =useState(false)
   const[messages, setMessages]=useState([])
   const[temp,setTemp]= useState([])
   const[local,setLocal]= useState([])
 
 useEffect(() =>{
   
-// try{
+ try{
  client.on('connect', () => {
-  // setConnectionStatus(true)
+   setConnectionStatus(true)
    console.log('Connected')
  }
  
- 
  )
-//}catch (error){console.log('mqtt.connect error',error)}
+}catch (error){console.log('mqtt.connect error',error)}
 
 client.subscribe(topic, () => {
   console.log("Subscribe to topic:", +topic)
