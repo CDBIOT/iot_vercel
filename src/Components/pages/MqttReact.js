@@ -51,10 +51,10 @@ useEffect(() =>{
 const client = (mqtt.connect(connectUrl,options))
 
 
-if(!clientRef.current){
-  const client = mqtt.connect(url,options);
-  clientRef.current = client
-}
+// if(!clientRef.current){
+//   const client = mqtt.connect(url,options);
+//   clientRef.current = client
+// }
 
 
  try{
