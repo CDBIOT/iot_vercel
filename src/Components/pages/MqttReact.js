@@ -102,11 +102,11 @@ console.log("Messages: " +messages)
 //<Connector brokerUrl='broker.mqtt-dashboard.com:1883'/>
  return(
   <div>
-   
+{/*    
 <Connector brokerUrl='wss://broker.mqtt-dashboard.com:1883/mqtt'/>
 <Connector brokerUrl='wss://5d3be4977c10482289edf71c15f420fe.s1.eu.hivemq.cloud:8884/mqtt' />
-<Connector brokerUrl='wss://broker.mqtt-dashboard.com:8884/mqtt' />
-    <label >Status:<h2> {connectionStatus}</h2></label>
+<Connector brokerUrl='wss://broker.mqtt-dashboard.com:8884/mqtt' />*/}
+    <label >Status:<h2> {connectionStatus}</h2></label> 
 				<table className = {styles.table}>   
 					<tr><th className = {styles.thead} colSpan={2}>TEMPERATURA DA SALA </th></tr>
 					<tr>
