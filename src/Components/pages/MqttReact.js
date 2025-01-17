@@ -18,12 +18,12 @@ function MqttReact(){
    const payload = 'temp';
    const hosthive = "5d3be4977c10482289edf71c15f420fe.s1.eu.hivemq.cloud";
    const host = 'broker.mqtt-dashboard.com'
-   const port = '1883'
+   const port = '8884'
    const clientId = "cdbiot123";
 
    //const clientId = 'mqttjs_'+ Math.random().toString(16).slice(3)
    
-   const connectUrl = 'wss://broker.mqtt-dashboard.com'
+   const connectUrl = 'wss://5d3be4977c10482289edf71c15f420fe.s1.eu.hivemq.cloud'
    const options = {
         host: host,
         port: port,
@@ -41,8 +41,8 @@ function MqttReact(){
 const client = (mqtt.connect(connectUrl,options))
 
   //const[client, setClient] = useState(null)
-  const[connectionStatus, setConnectionStatus] =useState(false)
-  const[messages, setMessages]=useState([])
+  const[connectionStatus, setConnectionStatus] =useState()
+  const[messages, setMessages]=useState('')
   const[temp,setTemp]= useState([])
   const[local,setLocal]= useState([])
 
@@ -59,9 +59,9 @@ useEffect(() =>{
 
 client.subscribe(topic, () => {
   console.log("Subscribe to topic:", +topic)
-  //if (error) {
-  //    console.error(error)
-   // }
+  if (error) {
+      console.error(error)
+   }
 
 }) 
 
@@ -74,7 +74,7 @@ client.on('message', (topic, payload) => {
 setMessages(payload.toString())
      //temp = payload
      //local= topic
-     console.log('Received Message:', + payload.toString(),"From:", +topic.toString())
+     console.log('Received Message:',+ messages + payload.toString(),"From:", +topic.toString())
    // res.status(200).json({m})
  })
 
@@ -103,15 +103,17 @@ console.log("Messages: " +messages)
  return(
   <div>
    
-<Connector brokerUrl='wss://broker.mqtt-dashboard.com:1883'/>
+<Connector brokerUrl='wss://broker.mqtt-dashboard.com:1883/mqtt'/>
 <Connector brokerUrl='wss://5d3be4977c10482289edf71c15f420fe.s1.eu.hivemq.cloud:8884/mqtt' />
-<Connector brokerUrl='wss://broker.mqtt-dashboard.com:8884' />
+<Connector brokerUrl='wss://broker.mqtt-dashboard.com:8884/mqtt' />
     <label >Status:<h2> {connectionStatus}</h2></label>
 				<table className = {styles.table}>   
 					<tr><th className = {styles.thead} colSpan={2}>TEMPERATURA DA SALA </th></tr>
 					<tr>
 						<td>Local: </td><td colSpan={4}><h2>{topic}</h2></td>
 						<td>Temp: </td><td colSpan={4}><h2>{payload}</h2></td> 
+            <td>Message: </td><td colSpan={4}><h2>{messages}</h2></td> 
+
 					</tr>
         </table> 
   </div>
