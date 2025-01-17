@@ -15,7 +15,7 @@ async function getUsers(){
         cache: 'default',
         'Content-Type': 'application/json'}
 
-await Axios.get(`https://test-no-vercel.vercel.app/user`,options)
+await Axios.get(`https://test-no-vercel.vercel.app/src/app`,options)
         .then(response=>{
         setPeople(response.data.people)
         console.log(response.data)        

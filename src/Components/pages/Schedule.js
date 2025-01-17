@@ -82,26 +82,34 @@ async function onLamp() {
         mode: 'cors',
         cache: 'default',
         'Content-Type': 'application/json'}
-    
+    try{
        await Axios.get (('https://test-no-vercel.vercel.app/mqtt'),options)
         .then(response => {
             console.log("Lamp ON")
         }
         )
+    }
+    catch(error){
+        console.error(error);
+    }
 }
 
 async function offLamp() {
     const options = {
         'Access-Control-Allow-Origin':'*',
+        method: 'GET',
         mode: 'cors',
         cache: 'default',
         'Content-Type': 'application/json'}
-    
+    try{
        await Axios.get (('https://test-no-vercel.vercel.app/mqtt2'),options)
         .then(response => {
             console.log("Lamp OFF")
         }
         )
+    } catch(error){
+        console.error(error);
+    }
 
 
 }
@@ -113,12 +121,15 @@ async function onPump() {
         mode: 'cors',
         cache: 'default',
         'Content-Type': 'application/json'}
-    
+    try{
        await Axios.get (('https://test-no-vercel.vercel.app/publisher'),options)
         .then(response => {
             console.log("Lamp OFF")
         }
         )
+    }catch(error){
+        console.error(error);
+    }
 
 
 }
@@ -130,14 +141,16 @@ async function offPump() {
         mode: 'cors',
         cache: 'default',
         'Content-Type': 'application/json'}
-    
+    try{
 await Axios.get (('https://test-no-vercel.vercel.app/subscriber'),options)
         .then(response => {
            // {topic,message}
             console.log("Lamp OFF")
         }
         )
-
+    }catch(error){
+        console.error(error);
+    }
 
 }
 
@@ -226,10 +239,10 @@ return (
             <span id="rele">N/D</span>
         </tr>
         <tr><td>
-	        <input className={styles.button} type="button" id="onlamp"   value="onLamp"    onClick= {onLamp}/>
-            <input className={styles.button} type="button" id="offlamp"   value="offLamp"    onClick={offLamp}/>
-	        <input className={styles.button} type="button" id="pump"  value="setPump" onClick={onPump}/>
-	        <input className={styles.button} type="button" id="vent" value="setVent"    onClick={offPump}/>
+	        <input className={styles.button} type="button" id="onlamp"  value="onLamp"   onClick={onLamp}/>
+            <input className={styles.button} type="button" id="offlamp" value="offLamp"  onClick={offLamp}/>
+	        <input className={styles.button} type="button" id="pump"    value="setPump"  onClick={onPump}/>
+	        <input className={styles.button} type="button" id="vent"    value="setVent"  onClick={offPump}/>
         </td></tr>
     </table>
 

@@ -16,9 +16,6 @@ import BotPress from './Components/pages/BotPress';
 
 function App() {
 
-
-  
-
 return (
   <div className = "App" > 
  <Router>
