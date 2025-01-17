@@ -239,10 +239,10 @@ return (
             <span id="rele">N/D</span>
         </tr>
         <tr><td>
-	        <input className={styles.button} type="button" id="onlamp"  value="onLamp"   onClick={onLamp}/>
-            <input className={styles.button} type="button" id="offlamp" value="offLamp"  onClick={offLamp}/>
-	        <input className={styles.button} type="button" id="pump"    value="setPump"  onClick={onPump}/>
-	        <input className={styles.button} type="button" id="vent"    value="setVent"  onClick={offPump}/>
+	        <input className={styles.button} type="button" id="onlamp"  value="Connect"     onClick={onLamp}/>
+            <input className={styles.button} type="button" id="offlamp" value="Disconnect"  onClick={offLamp}/>
+	        <input className={styles.button} type="button" id="pump"    value="setPump"     onClick={onPump}/>
+	        <input className={styles.button} type="button" id="vent"    value="setVent"     onClick={offPump}/>
         </td></tr>
     </table>
 
