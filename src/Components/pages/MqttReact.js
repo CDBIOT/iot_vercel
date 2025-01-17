@@ -23,7 +23,7 @@ function MqttReact(){
 
    //const clientId = 'mqttjs_'+ Math.random().toString(16).slice(3)
    
-   const connectUrl = 'wss://'+ {host} + ":"+ {port}+"/mqtt";
+   const connectUrl = 'wss://broker.mqtt-dashboar.com:8884/mqtt';
    const options = {
         host: host,
         port: port,
