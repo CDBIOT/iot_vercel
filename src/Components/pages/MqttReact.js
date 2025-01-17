@@ -1,7 +1,7 @@
 //import mqtt from "precompiled-mqtt";
 import mqtt from "mqtt"
 import styles from "../../styles/Graphics.module.css"
-import React, { useState , useEffect } from "react"
+import React, { useState, useRef , useEffect } from "react"
 import {Connector} from "mqtt-react-hooks"
 import { useMqttState } from 'mqtt-react-hooks';
 
@@ -20,6 +20,7 @@ function MqttReact(){
    const host = 'broker.mqtt-dashboard.com'
    const port = '8884'
    const clientId = "cdbiot123";
+   const clientRef = useRef(null);
 
    //const clientId = 'mqttjs_'+ Math.random().toString(16).slice(3)
    
@@ -33,12 +34,12 @@ function MqttReact(){
         username: 'test',
         password: 'test',
         reconnectPeriod: 10000,
-        topic: topic
+        topic:  'Sala'
      }
      
 //const {connectionStatus} = useMqttState();
 
-const client = (mqtt.connect(connectUrl,options))
+//const client = (mqtt.connect(connectUrl,options))
 
   //const[client, setClient] = useState(null)
   const[connectionStatus, setConnectionStatus] =useState()
@@ -49,18 +50,16 @@ const client = (mqtt.connect(connectUrl,options))
 useEffect(() =>{
   
  try{
- 
 const client = (mqtt.connect(connectUrl,options))
     console.log('Connected to MQTT broker')
   
  }catch (error){console.log('mqtt.connect error',error)}
  
 
-// if(!clientRef.current){
-//   const client = mqtt.connect(url,options);
-//   clientRef.current = client
-// }
-
+ if(!clientRef.current){
+  const client = mqtt.connect(url,options);
+   clientRef.current = client
+ 
 
  try{
  client.on('connect', () => {
@@ -70,6 +69,8 @@ const client = (mqtt.connect(connectUrl,options))
  
  )
 }catch (error){console.log('mqtt.connect error',error)}
+}
+
 
 try{
 client.subscribe(topic, () => {
@@ -116,8 +117,8 @@ console.log("Messages: " +messages)
 //<Connector brokerUrl='broker.mqtt-dashboard.com:1883'/>
  return(
   <div>
-{/*    
-<Connector brokerUrl='wss://broker.mqtt-dashboard.com:1883/mqtt'/>
+    
+{/*<Connector brokerUrl='wss://broker.mqtt-dashboard.com:1883/mqtt'/>
 <Connector brokerUrl='wss://5d3be4977c10482289edf71c15f420fe.s1.eu.hivemq.cloud:8884/mqtt' />
 <Connector brokerUrl='wss://broker.mqtt-dashboard.com:8884/mqtt' />*/}
     <label >Status:<h2> {connectionStatus}</h2></label> 
