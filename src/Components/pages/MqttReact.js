@@ -48,8 +48,13 @@ const client = (mqtt.connect(connectUrl,options))
 
 useEffect(() =>{
   
+ try{
+ 
 const client = (mqtt.connect(connectUrl,options))
-
+    console.log('Connected to MQTT broker')
+  
+ }catch (error){console.log('mqtt.connect error',error)}
+ 
 
 // if(!clientRef.current){
 //   const client = mqtt.connect(url,options);
