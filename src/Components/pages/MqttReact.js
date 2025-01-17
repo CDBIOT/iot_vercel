@@ -69,7 +69,7 @@ const client = (mqtt.connect(connectUrl,options))
  
  )
 }catch (error){console.log('mqtt.connect error',error)}
-}
+
 
 
 try{
