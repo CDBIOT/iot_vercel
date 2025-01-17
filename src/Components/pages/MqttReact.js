@@ -34,7 +34,7 @@ function MqttReact(){
         username: 'test',
         password: 'test',
         reconnectPeriod: 10000,
-        topic:  'Sala'
+        topic: topic2
      }
      
 //const {connectionStatus} = useMqttState();
@@ -56,9 +56,9 @@ const client = (mqtt.connect(connectUrl,options))
  }catch (error){console.log('mqtt.connect error',error)}
  
 
- if(!clientRef.current){
-  const client = mqtt.connect(url,options);
-   clientRef.current = client
+//  if(!clientRef.current){
+//   const client = mqtt.connect(connecturl,options);
+//    clientRef.current = client
  
 
  try{
@@ -114,7 +114,6 @@ console.log("Messages: " +messages)
   
 // }, 1000);
 
-//<Connector brokerUrl='broker.mqtt-dashboard.com:1883'/>
  return(
   <div>
     
