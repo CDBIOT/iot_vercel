@@ -57,13 +57,13 @@ useEffect(() =>{
  )
 }catch (error){console.log('mqtt.connect error',error)}
 
+try{
 client.subscribe(topic, () => {
   console.log("Subscribe to topic:", +topic)
-  if (error) {
-      console.error(error)
-   }
-
-}) 
+}) }catch(error)
+{
+  console.error(error)
+}
 
 client.stream.on('error', (err) => {
   console.error(`Connection failed: ${err.message}`);
