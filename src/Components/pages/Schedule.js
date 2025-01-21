@@ -224,11 +224,11 @@ return (
         </table>
         <h1>
           <span>Currently </span>
-          <span>{LED ? "ON" : "OFF"}</span>
+          {/* <span>{LED ? "ON" : "OFF"}</span> */}
         </h1>
-        <Button variant="contained" onClick={offLamp}>
+        {/* <Button variant="contained" onClick={offLamp}>
           {LED ? "Turn Off" : "Turn On"}
-        </Button>
+        </Button> */}
 
     {/* <div className = {styles.temp_show}>
         <table>
