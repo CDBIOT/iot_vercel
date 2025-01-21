@@ -93,8 +93,9 @@ const options = {
     topic: topic2
  }
 
+ const client = (mqtt.connect(connectUrl,options))
+
 function connection() {
-const client = (mqtt.connect(connectUrl,options))
 
 try{
     client.on('connect', () => {
@@ -123,12 +124,7 @@ try{
          console.log('Received Message:',+ messages + payload.toString(),"From:", +topic.toString())
        // res.status(200).json({m})
      })
-   
- // client.publish(topic, 'nodejs mqtt test', { qos: 0, retain: true }, (error) => {
-//  if (error) {
-    //  console.error(error)
-//    }
- // })
+    
 }
 
 
@@ -153,43 +149,19 @@ useEffect(() => {
 useEffect(() => {
    // startTime();
     }, [])
+  
+
     
-async function onLamp() {
-    const options = {
-       }
-    try{
-      // await 
-       //// client.publish(topic, 'nodejs mqtt test', { qos: 0, retain: true }, (error) => {
-       // if (error) {
-       //     console.error(error)
-       // }
-       //}
-        
-    }
-    catch(error){
-        console.error(error);
-    }
-}
-
 async function offLamp() {
-    const options = {
-        'Access-Control-Allow-Origin':'*',
-        method: 'GET',
-        mode: 'cors',
-        cache: 'default',
-        'Content-Type': 'application/json'}
-    try{
-       await Axios.get (('https://test-no-vercel.vercel.app/mqtt2'),options)
-        .then(response => {
-            console.log("Lamp OFF")
-        }
-        )
-    } catch(error){
-        console.error(error);
-    }
 
-
-}
+    client.publish(topic2, '1', { qos: 0, retain: true }, (error) => {
+       if (error) {
+        console.error(error)
+      }
+    })
+  
+  
+  }
 
 async function onPump() {
     const options = {
@@ -239,6 +211,14 @@ return (
             <label >Status:<h2> {connectionStatus}</h2></label> 
         <tr className={styles.tr}><h2 className={styles.h2}>{dateTime.hours} : {dateTime.minutes} : {dateTime.seconds}</h2></tr>
         </table>
+        <h1>
+          <span>Currently </span>
+          <span>{LED ? "ON" : "OFF"}</span>
+        </h1>
+        <Button variant="contained" onClick={offLamp}>
+          {LED ? "Turn Off" : "Turn On"}
+        </Button>
+
     {/* <div className = {styles.temp_show}>
         <table>
            
@@ -315,7 +295,7 @@ return (
             <span id="rele">N/D</span>
         </tr>
         <tr><td>
-	        <input className={styles.button} type="button" id="onlamp"  value="Connect"     onClick={onLamp}/>
+	        <input className={styles.button} type="button" id="connection"  value="Connect"     onClick={connection}/>
             <input className={styles.button} type="button" id="offlamp" value="Disconnect"  onClick={offLamp}/>
 	        <input className={styles.button} type="button" id="pump"    value="setPump"     onClick={onPump}/>
 	        <input className={styles.button} type="button" id="vent"    value="setVent"     onClick={offPump}/>
