@@ -59,13 +59,11 @@ const client = (mqtt.connect(connectUrl,options))
 //    clientRef.current = client
  
 
- try{
+try{
  client.on('connect', () => {
    setConnectionStatus(true)
    console.log('Connected to MQTT broker')
- }
- 
- )
+ })
 }catch (error){console.log('mqtt.connect error',error)}
 
 

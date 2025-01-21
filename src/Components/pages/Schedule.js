@@ -1,10 +1,28 @@
 import { useState , useEffect } from "react"
 import styles from "../../styles/Schedule.module.css"
 import Axios from "axios"
+import mqtt from "mqtt";
+import {Connector} from "mqtt-react-hooks";
+import {useMqttState} from "mqtt-react-hooks";
+
 
 function Schedule(){
 
-const topic = "Sala"
+const topic1 = 'bh/inTopic'
+const topic2 = 'room_light'
+const topic3 = 'aqua_light'
+const topic4 = 'Quarto'
+const topic5 = 'Sala'
+
+   const topic = 'Sala';
+   const path = '/mqtt';
+   const payload = 'temp';
+   const hosthive = "5d3be4977c10482289edf71c15f420fe.s1.eu.hivemq.cloud";
+   const host = 'broker.mqtt-dashboard.com'
+   const port = '8884'
+   const clientId = "cdbiot123";
+   const clientRef = useRef(null);
+
 const message = "1"
 
 const date = new Date();
@@ -55,7 +73,64 @@ await Axios.get (('https://test-no-vercel.vercel.app/mqtt'),options)
 })
 }
 
+
+//const connectUrl = 'wss://5d3be4977c10482289edf71c15f420fe.s1.eu.hivemq.cloud:8884/mqtt';
+const connectUrl = 'wss://broker.mqtt-dashboard.com:8884/mqtt'
+   
+const options = {
+    host: host,
+    port: port,
+    clientId: clientId,
+    clean: true,
+    connectTimeout: 5000,
+    username: 'test',
+    password: 'test',
+    reconnectPeriod: 10000,
+    topic: topic2
+ }
+
+function connection() {
+const client = (mqtt.connect(connectUrl,options))
+
+try{
+    client.on('connect', () => {
+      setConnectionStatus(true)
+      console.log('Connected to MQTT broker')
+    })
+   }catch (error){console.log('mqtt.connect error',error)}
+   
+try{
+    client.subscribe(topic, () => {
+      console.log("Subscribe to topic:", +topic)
+    }) }catch(error)
+    {
+      console.error(error)
+    }
+    
+    client.stream.on('error', (err) => {
+      console.error(`Connection failed: ${err.message}`);
+      client.end();
+    });
+    
+    client.on('message', (topic, payload) => {
+    setMessages(payload.toString())
+         //temp = payload
+         //local= topic
+         console.log('Received Message:',+ messages + payload.toString(),"From:", +topic.toString())
+       // res.status(200).json({m})
+     })
+   
+ // client.publish(topic, 'nodejs mqtt test', { qos: 0, retain: true }, (error) => {
+//  if (error) {
+    //  console.error(error)
+//    }
+ // })
+}
+
+
+
 useEffect(() => {
+    connection();
     mqtt_show();
     }, [])
 
@@ -77,17 +152,15 @@ useEffect(() => {
     
 async function onLamp() {
     const options = {
-        'Access-Control-Allow-Origin':'*',
-        method: 'GET',
-        mode: 'cors',
-        cache: 'default',
-        'Content-Type': 'application/json'}
+       }
     try{
-       await Axios.get (('https://test-no-vercel.vercel.app/mqtt'),options)
-        .then(response => {
-            console.log("Lamp ON")
-        }
-        )
+      // await 
+       //// client.publish(topic, 'nodejs mqtt test', { qos: 0, retain: true }, (error) => {
+       // if (error) {
+       //     console.error(error)
+       // }
+       //}
+        
     }
     catch(error){
         console.error(error);
@@ -245,7 +318,14 @@ return (
 	        <input className={styles.button} type="button" id="vent"    value="setVent"     onClick={offPump}/>
         </td></tr>
     </table>
-
+    <label >Status:<h2> {connectionStatus}</h2></label> 
+				<table className = {styles.table}>   
+					<tr><th className = {styles.thead} colSpan={2}>TEMPERATURA DA SALA </th></tr>
+					<tr>
+						<td>Local: </td><td colSpan={4}><h2>{topic}</h2></td>
+						<td>Temp: </td><td colSpan={4}><h2>{messages}</h2></td> 
+					</tr>
+    </table> 
 </form>
 
     </div>
