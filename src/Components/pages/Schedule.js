@@ -207,12 +207,12 @@ const sendUpdate = useCallback(() => {
     websocket.current?.send(
       JSON.stringify({
         type: "message",
-        LED: led,
+       // LED: led,
       })
     );
   }, []);
 
-  const toggleLed = useCallback(() => sendUpdate({ led: !LED }), [LED, sendUpdate]);
+ // const toggleLed = useCallback(() => sendUpdate({ led: !LED }), [LED, sendUpdate]);
 
 return (
     <>
