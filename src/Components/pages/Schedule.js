@@ -93,9 +93,11 @@ const options = {
     topic: topic2
  }
 
- const client = (mqtt.connect(connectUrl,options))
 
 function connection() {
+
+const client = (mqtt.connect(connectUrl,options))
+
 
 try{
     client.on('connect', () => {
@@ -154,14 +156,19 @@ useEffect(() => {
     
 async function offLamp() {
 
-    client.publish(topic2, '1', { qos: 0, retain: true }, (error) => {
+const client = (mqtt.connect(connectUrl,options))
+
+client.publish(topic2, '1', { qos: 0, retain: true }, (error) => {
        if (error) {
         console.error(error)
       }
     })
-  
-  
   }
+
+useEffect(() => {
+    // offLamp();
+     }, [])
+
 
 async function onPump() {
     const options = {
