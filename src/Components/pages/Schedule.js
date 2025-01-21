@@ -203,6 +203,17 @@ await Axios.get (('https://test-no-vercel.vercel.app/subscriber'),options)
 
 }
 
+const sendUpdate = useCallback(() => {
+    websocket.current?.send(
+      JSON.stringify({
+        type: "message",
+        LED: led,
+      })
+    );
+  }, []);
+
+  const toggleLed = useCallback(() => sendUpdate({ led: !LED }), [LED, sendUpdate]);
+
 return (
     <>
     <h1>Schedule</h1>
