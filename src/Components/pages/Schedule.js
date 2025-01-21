@@ -235,9 +235,8 @@ return (
     <>
     <h1>Schedule</h1>
         <table className = {styles.table}>
-            <tr><td className={styles.thead}  >Temperatura: {temps[temp]} </td><td> Local: { local }</td><td> Data: { dia } / { mes } / { ano }</td></tr>
-            
-
+            <tr><td className={styles.thead}  >Temperatura: {messages} </td><td> Local: { topic }</td><td> Data: { dia } / { mes } / { ano }</td></tr>
+            <label >Status:<h2> {connectionStatus}</h2></label> 
         <tr className={styles.tr}><h2 className={styles.h2}>{dateTime.hours} : {dateTime.minutes} : {dateTime.seconds}</h2></tr>
         </table>
     {/* <div className = {styles.temp_show}>
@@ -322,14 +321,8 @@ return (
 	        <input className={styles.button} type="button" id="vent"    value="setVent"     onClick={offPump}/>
         </td></tr>
     </table>
-    <label >Status:<h2> {connectionStatus}</h2></label> 
-				<table className = {styles.table}>   
-					<tr><th className = {styles.thead} colSpan={2}>TEMPERATURA DA SALA </th></tr>
-					<tr>
-						<td>Local: </td><td colSpan={4}><h2>{topic}</h2></td>
-						<td>Temp: </td><td colSpan={4}><h2>{messages}</h2></td> 
-					</tr>
-    </table> 
+   
+				
 </form>
 
     </div>
