@@ -218,8 +218,9 @@ return (
     <>
     <h1>Schedule</h1>
         <table className = {styles.table}>
-            <tr><td className={styles.thead}  >Temperatura: {messages} </td><td> Local: { topic }</td><td> Data: { dia } / { mes } / { ano }</td></tr>
+            <tr><td className={styles.tr}  >Temperatura: {messages} </td><td> Local: { topic }</td><td> Data: { dia } / { mes } / { ano }</td></tr>
             <label >Status:<h2> {connectionStatus}</h2></label> 
+
         <tr className={styles.tr}><h2 className={styles.h2}>{dateTime.hours} : {dateTime.minutes} : {dateTime.seconds}</h2></tr>
         </table>
         <h1>
@@ -307,7 +308,7 @@ return (
         </tr>
         <tr><td>
 	        <input className={styles.button} type="button" id="connection"  value="Connect"     onClick={connection}/>
-            <input className={styles.button} type="button" id="offlamp" value="Disconnect"  onClick={offLamp}/>
+            <input className={styles.button} type="button" id="offlamp" value="OFFLamp"  onClick={offLamp}/>
 	        <input className={styles.button} type="button" id="pump"    value="setPump"     onClick={onPump}/>
 	        <input className={styles.button} type="button" id="vent"    value="setVent"     onClick={offPump}/>
         </td></tr>
