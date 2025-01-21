@@ -21,9 +21,13 @@ const topic5 = 'Sala'
    const host = 'broker.mqtt-dashboard.com'
    const port = '8884'
    const clientId = "cdbiot123";
-   const clientRef = useRef(null);
+  // const clientRef = useRef(null);
 
 const message = "1"
+
+//const[client, setClient] = useState(null)
+const[connectionStatus, setConnectionStatus] =useState()
+const[messages, setMessages]=useState('')
 
 const date = new Date();
 const [temps, setData] = useState({})

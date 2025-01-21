@@ -13,6 +13,7 @@ const topic4 = 'Quarto'
 const topic5 = 'Sala'
 
 function MqttReact(){
+  
    const topic = 'Sala';
    const path = '/mqtt';
    const payload = 'temp';

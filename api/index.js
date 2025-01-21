@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser')
-const routers = require('../rotas_temps','../rotas_user','../mongoConect');
+const routers = require('./backend/rotas_temps','../rotas_user','../mongoConect');
 require('dotenv').config()
 const cookieParser = require('cookie-parser')
 const session = require('express-session')
