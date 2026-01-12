@@ -228,7 +228,7 @@ return (
             <tr><td className={styles.td}  >Temperatura: {messages} </td><td className={styles.td} > Local: { topic }</td><td className={styles.td} > Data: { dia } / { mes } / { ano }</td></tr>
             <label >Status:<td className={styles.td} > {connectionStatus}</td></label> 
 
-        <tr className={styles.tr}><h2 className={styles.h2}>{dateTime.hours} : {dateTime.minutes} : {dateTime.seconds}</h2></tr>
+        <tr className={styles.td}><h2 className={styles.h2}>{dateTime.hours} : {dateTime.minutes} : {dateTime.seconds}</h2></tr>
         </table>
         <h1>
           <span>Currently </span>

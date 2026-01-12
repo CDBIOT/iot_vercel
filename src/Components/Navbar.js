@@ -12,7 +12,7 @@ return(
 <ul className={styles.list}>
     <li>
     <p>
-    <img src={logo} alt="Logo"/>
+    <img src={logo} alt="Logo"/> 
     <img src={logo_toi} alt="Logo"/>
     </p>
     </li>
