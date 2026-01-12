@@ -225,8 +225,8 @@ return (
     <>
     <h1>Schedule</h1>
         <table className = {styles.table}>
-            <tr><td className={styles.tr}  >Temperatura: {messages} </td><td> Local: { topic }</td><td> Data: { dia } / { mes } / { ano }</td></tr>
-            <label >Status:<h2> {connectionStatus}</h2></label> 
+            <tr><td className={styles.td}  >Temperatura: {messages} </td><td className={styles.td} > Local: { topic }</td><td className={styles.td} > Data: { dia } / { mes } / { ano }</td></tr>
+            <label >Status:<td className={styles.td} > {connectionStatus}</td></label> 
 
         <tr className={styles.tr}><h2 className={styles.h2}>{dateTime.hours} : {dateTime.minutes} : {dateTime.seconds}</h2></tr>
         </table>
