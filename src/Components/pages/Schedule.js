@@ -166,7 +166,7 @@ client.publish(topic2, '1', { qos: 0, retain: true }, (error) => {
   }
 
 useEffect(() => {
-    // offLamp();
+     onLamp();
      }, [])
      
     
@@ -174,7 +174,7 @@ async function offLamp() {
 
 const client = (mqtt.connect(connectUrl,options))
 
-client.publish(topic2, '1', { qos: 0, retain: true }, (error) => {
+client.publish(topic2, '0', { qos: 0, retain: true }, (error) => {
        if (error) {
         console.error(error)
       }
@@ -182,7 +182,7 @@ client.publish(topic2, '1', { qos: 0, retain: true }, (error) => {
   }
 
 useEffect(() => {
-    // offLamp();
+     offLamp();
      }, [])
 
 
