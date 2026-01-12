@@ -108,7 +108,7 @@ try{
    
 try{
     client.subscribe(topic, () => {
-      console.log("Subscribe to topic:", +topic)
+      console.log("Subscribe to topic:", + topic)
     }) }catch(error)
     {
       console.error(error)
@@ -123,7 +123,7 @@ try{
     setMessages(payload.toString())
          //temp = payload
          //local= topic
-         console.log('Received Message:',+ messages + payload.toString(),"From:", +topic)
+         console.log('Received Message:',+ messages + payload.toString(),"From:", + topic)
        // res.status(200).json({m})
      })
     
@@ -154,6 +154,22 @@ useEffect(() => {
   
 
     
+async function onLamp() {
+
+const client = (mqtt.connect(connectUrl,options))
+
+client.publish(topic2, '1', { qos: 0, retain: true }, (error) => {
+       if (error) {
+        console.error(error)
+      }
+    })
+  }
+
+useEffect(() => {
+    // offLamp();
+     }, [])
+     
+    
 async function offLamp() {
 
 const client = (mqtt.connect(connectUrl,options))
@@ -168,6 +184,7 @@ client.publish(topic2, '1', { qos: 0, retain: true }, (error) => {
 useEffect(() => {
     // offLamp();
      }, [])
+
 
 
 async function onPump() {
@@ -315,6 +332,7 @@ return (
         </tr>
         <tr><td>
 	        <input className={styles.button} type="button" id="connection"  value="Connect"     onClick={connection}/>
+            <input className={styles.button} type="button" id="onlamp" value="ONLamp"  onClick={onLamp}/>
             <input className={styles.button} type="button" id="offlamp" value="OFFLamp"  onClick={offLamp}/>
 	        <input className={styles.button} type="button" id="pump"    value="setPump"     onClick={onPump}/>
 	        <input className={styles.button} type="button" id="vent"    value="setVent"     onClick={offPump}/>
