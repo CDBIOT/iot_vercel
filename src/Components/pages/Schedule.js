@@ -123,7 +123,7 @@ try{
     setMessages(payload.toString())
          //temp = payload
          //local= topic
-         console.log('Received Message:',+ messages + payload.toString(),"From:", +topic.toString())
+         console.log('Received Message:',+ messages + payload.toString(),"From:", +topic)
        // res.status(200).json({m})
      })
     
