@@ -10,6 +10,8 @@ h1 {
     margin: 0px;
     border: #787878 solid 2px;
   }
+
+
 h2 {
     font-size: 12px;
     text-align: left;
@@ -30,7 +32,16 @@ h3 {
     border-radius: 10px;
   }
 
-
+span {
+    font-size: 35px;
+    text-align: center;
+    color: black;
+    background: white;
+    border-radius: 7px 7px 0px 0px;
+    padding: 7px 4px 0px 4px;
+    margin: 0px;
+    border: #787878 solid 2px;
+  }
 .table{
     width: 100%;
     background-color: #222;
