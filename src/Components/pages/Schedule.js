@@ -243,7 +243,7 @@ return (
     <>
     <h1>Schedule</h1>
         <table className = {styles.table}>
-            <tr><td className={styles.td}  >Temperatura: {messages} </td><td className={styles.td} > Local: { topic }</td><td className={styles.td} > Data: { dia } / { mes } / { ano }</td></tr>
+            <tr><td className={styles.td}  >Temperatura: <h1>{messages}</h1> </td><td className={styles.td} > Local: { topic }</td><td className={styles.td} > Data: { dia } / { mes } / { ano }</td></tr>
             <label >Status:<td className={styles.td} > {connectionStatus}</td></label> 
 
         <tr className={styles.td}><h2 className={styles.h2}>{dateTime.hours} : {dateTime.minutes} : {dateTime.seconds}</h2></tr>
