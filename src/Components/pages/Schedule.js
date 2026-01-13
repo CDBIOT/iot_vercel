@@ -26,7 +26,7 @@ const topic5 = 'Sala'
 const message = "1"
 
 //const[client, setClient] = useState(null)
-const[connectionStatus, setConnectionStatus] =useState()
+const[connectionStatus, setConnectionStatus] =useState('')
 const[messages, setMessages]=useState('')
 
 const date = new Date();
