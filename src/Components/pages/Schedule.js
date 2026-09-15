@@ -80,7 +80,6 @@ await Axios.get (('https://test-no-vercel.vercel.app/mqtt'),options)
 })
 }
 
-
 //const connectUrl = 'wss://5d3be4977c10482289edf71c15f420fe.s1.eu.hivemq.cloud:8884/mqtt';
 //const connectUrl = 'wss://broker.mqtt-dashboard.com:8084/mqtt'
   const connectUrl = 'wss://broker.hivemq.com:8884/mqtt'; 
@@ -95,7 +94,6 @@ const options = {
     //topic: topic2
  }
 function connection() {
-
     // Evita criar várias conexões
     if (clientRef.current) {
         console.log("Cliente MQTT já existe");
@@ -121,11 +119,7 @@ function connection() {
 
     clientRef.current = mqttClient;
 
-    // =========================
-    // CONECTADO
-    // =========================
     mqttClient.on("connect", () => {
-
         console.log("================================");
         console.log("MQTT CONECTADO");
         console.log("Broker:", connectUrl);
@@ -133,81 +127,53 @@ function connection() {
 
         setConnectionStatus(true);
 
-        mqttClient.subscribe(topic, (error) => {
-
+    mqttClient.subscribe(topic, (error) => {
             if (error) {
                 console.error("Erro ao assinar tópico:", error);
                 return;
             }
-
             console.log("Subscribe to topic:", topic);
         });
     });
 
-    // =========================
-    // RECEBENDO MENSAGEM
-    // =========================
     mqttClient.on("message", (topicReceived, payload) => {
-
         const mensagem = payload.toString();
-
         console.log(
             "Received Message:",
             mensagem,
             "From:",
             topicReceived
         );
-
         setMessages(mensagem);
     });
-
     // =========================
     // ERRO
     // =========================
     mqttClient.on("error", (error) => {
-
         console.error("Erro MQTT:", error);
-
         setConnectionStatus(false);
     });
-
-    // =========================
-    // DESCONECTADO
-    // =========================
     mqttClient.on("close", () => {
-
         console.log("MQTT desconectado");
-
         setConnectionStatus(false);
     });
 
-    // =========================
-    // OFFLINE
-    // =========================
     mqttClient.on("offline", () => {
-
         console.log("MQTT offline");
-
         setConnectionStatus(false);
     });
 }
 function disconnet() {
-
     const client = clientRef.current
-
     if (!client) {
         console.log('Nenhum cliente MQTT conectado')
         return
     }
-
     console.log('Desconectando MQTT...')
 
     client.end(false, {}, () => {
-
         console.log('MQTT desconectado')
-
         setConnectionStatus(false)
-
         clientRef.current = null
     })
 }
