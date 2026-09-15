@@ -147,6 +147,9 @@ input[type=image]{
     color: green;
 }
 
+.statusInConnection {
+    color: yellow;
+}
 .statusConnected .statusDot {
     background-color: green;
 }

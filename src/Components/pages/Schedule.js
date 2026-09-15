@@ -122,7 +122,7 @@ try{
     mqttClient.stream.on('error', (err) => {
       console.error(`Connection failed: ${err.message}`);
       setConnectionStatus(false)
-      client.end();
+      mqttClient.end();
     });
     
     mqttClient.on('message', (topic, payload) => {
@@ -179,7 +179,7 @@ async function onLamp() {
         return
     }
 
-client.publish(topic2, '1', { qos: 0, retain: true }, (error) => {
+mqttClient.publish(topic2, '1', { qos: 0, retain: true }, (error) => {
        if (error) {
         console.error(error)
       }
@@ -190,12 +190,12 @@ function offLamp() {
 
     const client = clientRef.current
 
-    if (!client || typeof client.publish !== 'function') {
+    if (!mqttClient || typeof mqttClient.publish !== 'function') {
         console.error('Cliente MQTT não está conectado')
         return
     }
 
-    client.publish(topic2,'0',
+    mqttClient.publish(topic2,'0',
         { qos: 0, retain: true },
         (error) => {
             if (error) {
