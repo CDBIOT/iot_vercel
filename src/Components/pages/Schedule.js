@@ -113,11 +113,9 @@ try{
    
 try{
     mqttClient.subscribe(topic, () => {
-      console.log("Subscribe to topic:", + topic)
+      console.log("Subscribe to topic:", topic)
     }) }catch(error)
-    {
-      console.error(error)
-    }
+    {console.error(error)}
     
     mqttClient.stream.on('error', (err) => {
       console.error(`Connection failed: ${err.message}`);
