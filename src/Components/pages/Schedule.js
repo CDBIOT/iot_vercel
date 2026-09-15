@@ -19,7 +19,7 @@ const topic5 = 'Sala'
    const payload = 'temp';
    const hosthive = "5d3be4977c10482289edf71c15f420fe.s1.eu.hivemq.cloud";
    const host = 'broker.mqtt-dashboard.com'
-   const port = '8884'
+   const port = '8084'
    const clientId = "cdbiot123";
   // const clientRef = useRef(null);
 
@@ -79,7 +79,7 @@ await Axios.get (('https://test-no-vercel.vercel.app/mqtt'),options)
 
 
 //const connectUrl = 'wss://5d3be4977c10482289edf71c15f420fe.s1.eu.hivemq.cloud:8884/mqtt';
-const connectUrl = 'wss://broker.mqtt-dashboard.com:8884/mqtt'
+const connectUrl = 'wss://broker.mqtt-dashboard.com:8084/mqtt'
    
 const options = {
     host: host,
@@ -198,7 +198,7 @@ async function onPump() {
     try{
        await Axios.get (('https://test-no-vercel.vercel.app/publisher'),options)
         .then(response => {
-            console.log("Lamp OFF")
+            console.log("Publisher Lamp OFF")
         }
         )
     }catch(error){
@@ -219,7 +219,7 @@ async function offPump() {
 await Axios.get (('https://test-no-vercel.vercel.app/subscriber'),options)
         .then(response => {
            // {topic,message}
-            console.log("Lamp OFF")
+            console.log("Subscriber LAMP OFF")
         }
         )
     }catch(error){
