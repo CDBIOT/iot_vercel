@@ -1,4 +1,4 @@
-import { useState , useEffect } from "react"
+import { useState , useEffect,useRef } from "react"
 import styles from "../../styles/Schedule.module.css"
 import Axios from "axios"
 import mqtt from "mqtt";
@@ -8,6 +8,7 @@ import {useMqttState} from "mqtt-react-hooks";
 
 function Schedule(){
 
+const clientRef = useRef(null)
 const topic1 = 'bh/inTopic'
 const topic2 = 'room_light'
 const topic3 = 'aqua_light'
@@ -30,6 +31,7 @@ const[connectionStatus, setConnectionStatus] =useState('')
 const[messages, setMessages]=useState('')
 
 const date = new Date();
+
 const [temps, setData] = useState({})
 const [temp,setTemp] = useState()
 const [dia,setDia] = useState()
@@ -97,7 +99,7 @@ const options = {
 function connection() {
 
 const client = (mqtt.connect(connectUrl,options))
-
+clientRef.current = client
 
 try{
     client.on('connect', () => {
@@ -158,8 +160,12 @@ useEffect(() => {
 async function onLamp() {
 
 // const client = (mqtt.connect(connectUrl,options))
+if (!clientRef.current) {
+        console.error("Cliente MQTT não conectado")
+        return
+    }
 
-client.publish(topic2, '1', { qos: 0, retain: true }, (error) => {
+clientRef.publish(topic2, '1', { qos: 0, retain: true }, (error) => {
        if (error) {
         console.error(error)
       }
@@ -174,8 +180,11 @@ useEffect(() => {
 async function offLamp() {
 
 // const client = (mqtt.connect(connectUrl,options))
-
-client.publish(topic2, '0', { qos: 0, retain: true }, (error) => {
+if (!clientRef.current) {
+        console.error("Cliente MQTT não conectado")
+        return
+    }
+clientRef.publish(topic2, '0', { qos: 0, retain: true }, (error) => {
        if (error) {
         console.error(error)
       }
