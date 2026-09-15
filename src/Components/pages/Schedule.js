@@ -190,12 +190,12 @@ function offLamp() {
 
     const client = clientRef.current
 
-    if (!mqttClient || typeof mqttClient.publish !== 'function') {
+    if (!client || typeof client.publish !== 'function') {
         console.error('Cliente MQTT não está conectado')
         return
     }
 
-    mqttClient.publish(topic2,'0',
+    client.publish(topic2,'0',
         { qos: 0, retain: true },
         (error) => {
             if (error) {
