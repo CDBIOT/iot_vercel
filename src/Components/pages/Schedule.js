@@ -82,7 +82,7 @@ await Axios.get (('https://test-no-vercel.vercel.app/mqtt'),options)
 
 
 //const connectUrl = 'wss://5d3be4977c10482289edf71c15f420fe.s1.eu.hivemq.cloud:8884/mqtt';
-const connectUrl = 'ws://broker.mqtt-dashboard.com:1883/mqtt'
+const connectUrl = 'wss://broker.mqtt-dashboard.com:8084/mqtt'
    
 const options = {
   
