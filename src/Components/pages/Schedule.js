@@ -346,7 +346,8 @@ return (
                 <td className={styles.td}><label>Data final: </label></td>
                 <td><input id="finalDate" value={finalDate}  type="date" onChange={(e)=>setFinalDate(e.target.value)}  name="finalDate" /></td>
         </tr>
-        <tr className={styles.tr}></tr>
+
+        <tr className={styles.tr}>
         <td className={styles.td}>
         <label>Set Hour:  </label></td>
         <td className={styles.td}>
