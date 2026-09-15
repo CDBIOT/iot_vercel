@@ -1,4 +1,4 @@
-import { useState , useEffect,useRef } from "react"
+import { useState , useEffect, useRef } from "react"
 import styles from "../../styles/Schedule.module.css"
 import Axios from "axios"
 import mqtt from "mqtt";
@@ -84,8 +84,7 @@ await Axios.get (('https://test-no-vercel.vercel.app/mqtt'),options)
 const connectUrl = 'wss://broker.mqtt-dashboard.com:8084/mqtt'
    
 const options = {
-    host: host,
-    port: port,
+  
     clientId: clientId,
     clean: true,
     connectTimeout: 5000,
@@ -98,30 +97,30 @@ const options = {
 
 function connection() {
 
-const client = (mqtt.connect(connectUrl,options))
-clientRef.current = client
+const mqttClient = (mqtt.connect(connectUrl,options))
+clientRef.current = mqttClient
 
 try{
-    client.on('connect', () => {
+    mqttClient.on('connect', () => {
       setConnectionStatus(true)
       console.log('Connected to MQTT broker')
     })
    }catch (error){console.log('mqtt.connect error',error)}
    
 try{
-    client.subscribe(topic, () => {
+    mqttClient.subscribe(topic, () => {
       console.log("Subscribe to topic:", + topic)
     }) }catch(error)
     {
       console.error(error)
     }
     
-    client.stream.on('error', (err) => {
+    mqttClient.stream.on('error', (err) => {
       console.error(`Connection failed: ${err.message}`);
       client.end();
     });
     
-    client.on('message', (topic, payload) => {
+    mqttClient.on('message', (topic, payload) => {
     setMessages(payload.toString())
          //temp = payload
          //local= topic
@@ -159,35 +158,43 @@ useEffect(() => {
     
 async function onLamp() {
 
-// const client = (mqtt.connect(connectUrl,options))
-if (!clientRef.current) {
-        console.error("Cliente MQTT não conectado")
+    const client = clienteRef.current
+
+    if (!client || typeof client.publish !== 'function') {
+        console.error('Cliente MQTT não está conectado')
         return
     }
 
-clientRef.publish(topic2, '1', { qos: 0, retain: true }, (error) => {
+client.publish(topic2, '1', { qos: 0, retain: true }, (error) => {
        if (error) {
         console.error(error)
       }
     })
   }
 
-     
-    
-async function offLamp() {
+  function offLamp() {
 
-// const client = (mqtt.connect(connectUrl,options))
-if (!clientRef.current) {
-        console.error("Cliente MQTT não conectado")
+    const client = clientRef.current
+
+    if (!client || typeof client.publish !== 'function') {
+        console.error('Cliente MQTT não está conectado')
         return
     }
-clientRef.publish(topic2, '0', { qos: 0, retain: true }, (error) => {
-       if (error) {
-        console.error(error)
-      }
-    })
-  }
 
+    client.publish(
+        topic2,
+        '0',
+        { qos: 0, retain: true },
+        (error) => {
+            if (error) {
+                console.error('Erro ao desligar lâmpada:', error)
+                return
+            }
+
+            console.log('Lamp OFF')
+        }
+    )
+}
 
 
 async function onPump() {
