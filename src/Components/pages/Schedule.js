@@ -172,9 +172,6 @@ clientRef.publish(topic2, '1', { qos: 0, retain: true }, (error) => {
     })
   }
 
-useEffect(() => {
-     onLamp();
-     }, [])
      
     
 async function offLamp() {
@@ -190,10 +187,6 @@ clientRef.publish(topic2, '0', { qos: 0, retain: true }, (error) => {
       }
     })
   }
-
-useEffect(() => {
-     offLamp();
-     }, [])
 
 
 
