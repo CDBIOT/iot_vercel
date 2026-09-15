@@ -170,6 +170,26 @@ useEffect(() => {
   
 
     
+async function disconnet() {
+
+    const client = clientRef.current
+
+    if (!client || typeof client.publish !== 'function') {
+        console.error('Cliente MQTT não está conectado')
+        return
+    }
+
+     mqttClient.on('close', () => {
+         console.log('MQTT desconectado')
+         setConnectionStatus(false)
+     })
+
+    // mqttClient.on('offline', () => {
+    //     console.log('MQTT offline')
+    //     setConnectionStatus(false)
+    // })
+  }
+    
 async function onLamp() {
 
     const client = clientRef.current
@@ -325,7 +345,8 @@ return (
             <tr className={styles.tr}>
                 <td className={styles.td}><label>Data final: </label></td>
                 <td><input id="finalDate" value={finalDate}  type="date" onChange={(e)=>setFinalDate(e.target.value)}  name="finalDate" /></td>
-           
+        </tr>
+        <tr className={styles.tr}></tr>
         <td className={styles.td}>
         <label>Set Hour:  </label></td>
         <td className={styles.td}>
@@ -365,6 +386,7 @@ return (
         </tr>
         <tr><td>
 	        <input className={styles.button} type="button" id="connection"  value="Connect"     onClick={connection}/>
+             <input className={styles.button} type="button" id="disconnection"  value="Disconnect"     onClick={disconnet}/>
             <input className={styles.button} type="button" id="onlamp" value="ONLamp"  onClick={onLamp}/>
             <input className={styles.button} type="button" id="offlamp" value="OFFLamp"  onClick={offLamp}/>
 	        <input className={styles.button} type="button" id="pump"    value="setPump"     onClick={onPump}/>
