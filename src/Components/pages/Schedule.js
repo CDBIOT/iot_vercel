@@ -134,15 +134,15 @@ try{
        // res.status(200).json({m})
      })
     
-    mqttClient.on('close', () => {
-        console.log('MQTT desconectado')
-        setConnectionStatus(false)
-    })
+    // mqttClient.on('close', () => {
+    //     console.log('MQTT desconectado')
+    //     setConnectionStatus(false)
+    // })
 
-    mqttClient.on('offline', () => {
-        console.log('MQTT offline')
-        setConnectionStatus(false)
-    })
+    // mqttClient.on('offline', () => {
+    //     console.log('MQTT offline')
+    //     setConnectionStatus(false)
+    // })
 }
 
 
@@ -325,10 +325,7 @@ return (
             <tr className={styles.tr}>
                 <td className={styles.td}><label>Data final: </label></td>
                 <td><input id="finalDate" value={finalDate}  type="date" onChange={(e)=>setFinalDate(e.target.value)}  name="finalDate" /></td>
-            </tr>
-       
-<br></br>
-        <tr className={styles.tr}>
+           
         <td className={styles.td}>
         <label>Set Hour:  </label></td>
         <td className={styles.td}>
@@ -339,6 +336,7 @@ return (
                  })}
         </select>
         </td>
+
         </tr>
         <tr className={styles.tr}>
         <td className={styles.td}>
