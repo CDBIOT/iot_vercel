@@ -172,14 +172,14 @@ useEffect(() => {
     
 async function onLamp() {
 
-    const client = clienteRef.current
+    const client = clientRef.current
 
     if (!client || typeof client.publish !== 'function') {
         console.error('Cliente MQTT não está conectado')
         return
     }
 
-mqttClient.publish(topic2, '1', { qos: 0, retain: true }, (error) => {
+    client.publish(topic2, '1', { qos: 0, retain: true }, (error) => {
        if (error) {
         console.error(error)
       }
