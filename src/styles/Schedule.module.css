@@ -127,3 +127,34 @@ input[type=image]{
     border-radius: 10px;
     background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.278), rgba(13, 13, 145, 0.607));
 }
+
+.statusConnected,
+.statusDisconnected {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: bold;
+}
+
+.statusDot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.statusConnected {
+    color: green;
+}
+
+.statusConnected .statusDot {
+    background-color: green;
+}
+
+.statusDisconnected {
+    color: red;
+}
+
+.statusDisconnected .statusDot {
+    background-color: red;
+}

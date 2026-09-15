@@ -27,7 +27,7 @@ const topic5 = 'Sala'
 const message = "1"
 
 //const[client, setClient] = useState(null)
-const[connectionStatus, setConnectionStatus] =useState('')
+const[connectionStatus, setConnectionStatus] =useState(false)
 const[messages, setMessages]=useState('')
 
 const date = new Date();
@@ -47,6 +47,7 @@ const [dateTime , setDateTime] = useState({
     minutes: date.getMinutes(),
     seconds: date.getSeconds()
 })
+
 const horas = [];
 for (let i = 0; i <= 24; i++) {
   horas.push(i);
@@ -88,12 +89,11 @@ const options = {
     clientId: clientId,
     clean: true,
     connectTimeout: 5000,
-    username: 'test',
-    password: 'test',
+   // username: 'test',
+   //password: 'test',
     reconnectPeriod: 10000,
     topic: topic2
  }
-
 
 function connection() {
 
@@ -105,7 +105,11 @@ try{
       setConnectionStatus(true)
       console.log('Connected to MQTT broker')
     })
-   }catch (error){console.log('mqtt.connect error',error)}
+   }catch (error){
+    setConnectionStatus(false)
+    console.log('mqtt.connect error',error)
+
+}
    
 try{
     mqttClient.subscribe(topic, () => {
@@ -117,6 +121,7 @@ try{
     
     mqttClient.stream.on('error', (err) => {
       console.error(`Connection failed: ${err.message}`);
+      setConnectionStatus(false)
       client.end();
     });
     
@@ -129,6 +134,15 @@ try{
        // res.status(200).json({m})
      })
     
+    mqttClient.on('close', () => {
+        console.log('MQTT desconectado')
+        setConnectionStatus(false)
+    })
+
+    mqttClient.on('offline', () => {
+        console.log('MQTT offline')
+        setConnectionStatus(false)
+    })
 }
 
 
@@ -172,7 +186,7 @@ client.publish(topic2, '1', { qos: 0, retain: true }, (error) => {
     })
   }
 
-  function offLamp() {
+function offLamp() {
 
     const client = clientRef.current
 
@@ -181,16 +195,13 @@ client.publish(topic2, '1', { qos: 0, retain: true }, (error) => {
         return
     }
 
-    client.publish(
-        topic2,
-        '0',
+    client.publish(topic2,'0',
         { qos: 0, retain: true },
         (error) => {
             if (error) {
                 console.error('Erro ao desligar lâmpada:', error)
                 return
             }
-
             console.log('Lamp OFF')
         }
     )
@@ -213,8 +224,6 @@ async function onPump() {
     }catch(error){
         console.error(error);
     }
-
-
 }
 
 async function offPump() {
@@ -234,7 +243,6 @@ await Axios.get (('https://test-no-vercel.vercel.app/subscriber'),options)
     }catch(error){
         console.error(error);
     }
-
 }
 
 // const sendUpdate = useCallback(() => {
@@ -253,7 +261,24 @@ return (
     <h1>Schedule</h1>
         <table className = {styles.table}>
             <tr><td className={styles.td}  >Temperatura: <span className = {styles.span}>{messages}</span> </td><td className={styles.td} > Local: { topic }</td><td className={styles.td} > Data: { dia } / { mes } / { ano }</td></tr>
-            <label >Status:<td className={styles.td} > {connectionStatus}</td></label> 
+           <tr>
+
+    <td className={styles.td}>   Status MQTT:  </td>
+
+    <td className={styles.td}>
+        <span   className={
+                connectionStatus
+                    ? styles.statusConnected
+                    : styles.statusDisconnected
+            }
+        >
+            <span className={styles.statusDot}></span>
+            {connectionStatus
+                ? 'Conectado'
+                : 'Desconectado'}
+        </span>
+    </td>
+</tr>
 
         <tr className={styles.td}><h2 className={styles.h2}>{dateTime.hours} : {dateTime.minutes} : {dateTime.seconds}</h2></tr>
         </table>
