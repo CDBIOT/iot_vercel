@@ -81,16 +81,16 @@ await Axios.get (('https://test-no-vercel.vercel.app/mqtt'),options)
 }
 
 
-const connectUrl = 'wss://5d3be4977c10482289edf71c15f420fe.s1.eu.hivemq.cloud:8884/mqtt';
+//const connectUrl = 'wss://5d3be4977c10482289edf71c15f420fe.s1.eu.hivemq.cloud:8884/mqtt';
 //const connectUrl = 'wss://broker.mqtt-dashboard.com:8084/mqtt'
-   
+  const connectUrl = 'ws://broker.mqtt-dashboard.com:8000/mqtt'; 
+  
 const options = {
   
     clientId: clientId,
     clean: true,
-    connectTimeout: 5000,
-   // username: 'test',
-   //password: 'test',
+    connectTimeout: 5000, username: process.env.REACT_APP_MQTT_USER,
+    password: process.env.REACT_APP_MQTT_PASSWORD,
     reconnectPeriod: 10000,
     //topic: topic2
  }
