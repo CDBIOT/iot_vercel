@@ -94,48 +94,103 @@ const options = {
     reconnectPeriod: 10000,
     //topic: topic2
  }
-
 function connection() {
 
     // Evita criar várias conexões
-    if (clientRef.current && clientRef.current.connected) {
-        console.log('MQTT já está conectado')
-        return
+    if (clientRef.current) {
+        console.log("Cliente MQTT já existe");
+
+        if (clientRef.current.connected) {
+            console.log("MQTT já está conectado");
+            return;
+        }
     }
-    console.log('Tentando conectar ao MQTT...')
 
-const mqttClient = (mqtt.connect(connectUrl,options))
-clientRef.current = mqttClient
+    console.log("Conectando ao MQTT...");
 
-    mqttClient.on('connect', () => {
-        console.log('MQTT conectado')
-        setConnectionStatus(true)
+    const mqttClient = mqtt.connect(connectUrl, {
+        clientId: clientId,
+        clean: true,
+        connectTimeout: 10000,
+        reconnectPeriod: 5000,
+
+        // Se o HiveMQ Cloud exigir autenticação:
+        // username: process.env.REACT_APP_MQTT_USER,
+        // password: process.env.REACT_APP_MQTT_PASSWORD
+    });
+
+    clientRef.current = mqttClient;
+
+    // =========================
+    // CONECTADO
+    // =========================
+    mqttClient.on("connect", () => {
+
+        console.log("================================");
+        console.log("MQTT CONECTADO");
+        console.log("Broker:", connectUrl);
+        console.log("================================");
+
+        setConnectionStatus(true);
 
         mqttClient.subscribe(topic, (error) => {
+
             if (error) {
-                console.error('Erro ao fazer subscribe:', error)
-                return
+                console.error("Erro ao assinar tópico:", error);
+                return;
             }
-            console.log('Subscribe to topic:', topic)
-        })
-    })
 
-    mqttClient.on('error', (error) => {
-        console.error('MQTT error:', error)
-        setConnectionStatus(false)
-    })
+            console.log("Subscribe to topic:", topic);
+        });
+    });
 
-    mqttClient.on('close', () => {
-        console.log('MQTT desconectado')
-        setConnectionStatus(false)
-    })
+    // =========================
+    // RECEBENDO MENSAGEM
+    // =========================
+    mqttClient.on("message", (topicReceived, payload) => {
 
-    mqttClient.on('offline', () => {
-        console.log('MQTT offline')
-        setConnectionStatus(false)
-    })
+        const mensagem = payload.toString();
+
+        console.log(
+            "Received Message:",
+            mensagem,
+            "From:",
+            topicReceived
+        );
+
+        setMessages(mensagem);
+    });
+
+    // =========================
+    // ERRO
+    // =========================
+    mqttClient.on("error", (error) => {
+
+        console.error("Erro MQTT:", error);
+
+        setConnectionStatus(false);
+    });
+
+    // =========================
+    // DESCONECTADO
+    // =========================
+    mqttClient.on("close", () => {
+
+        console.log("MQTT desconectado");
+
+        setConnectionStatus(false);
+    });
+
+    // =========================
+    // OFFLINE
+    // =========================
+    mqttClient.on("offline", () => {
+
+        console.log("MQTT offline");
+
+        setConnectionStatus(false);
+    });
 }
-
 function disconnet() {
 
     const client = clientRef.current
