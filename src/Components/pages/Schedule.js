@@ -179,7 +179,7 @@ async function disconnet() {
         return
     }
 
-     mqttClient.on('close', () => {
+     client.on('close', () => {
          console.log('MQTT desconectado')
          setConnectionStatus(false)
      })
