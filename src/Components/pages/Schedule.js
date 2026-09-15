@@ -157,7 +157,7 @@ useEffect(() => {
     
 async function onLamp() {
 
-const client = (mqtt.connect(connectUrl,options))
+// const client = (mqtt.connect(connectUrl,options))
 
 client.publish(topic2, '1', { qos: 0, retain: true }, (error) => {
        if (error) {
@@ -173,7 +173,7 @@ useEffect(() => {
     
 async function offLamp() {
 
-const client = (mqtt.connect(connectUrl,options))
+// const client = (mqtt.connect(connectUrl,options))
 
 client.publish(topic2, '0', { qos: 0, retain: true }, (error) => {
        if (error) {
