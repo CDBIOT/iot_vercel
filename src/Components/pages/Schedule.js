@@ -92,63 +92,72 @@ const options = {
    // username: 'test',
    //password: 'test',
     reconnectPeriod: 10000,
-    topic: topic2
+    //topic: topic2
  }
 
 function connection() {
 
+    // Evita criar várias conexões
+    if (clientRef.current && clientRef.current.connected) {
+        console.log('MQTT já está conectado')
+        return
+    }
+    console.log('Tentando conectar ao MQTT...')
+
 const mqttClient = (mqtt.connect(connectUrl,options))
 clientRef.current = mqttClient
 
-try{
     mqttClient.on('connect', () => {
-      setConnectionStatus(true)
-      console.log('Connected to MQTT broker')
+        console.log('MQTT conectado')
+        setConnectionStatus(true)
+
+        mqttClient.subscribe(topic, (error) => {
+            if (error) {
+                console.error('Erro ao fazer subscribe:', error)
+                return
+            }
+            console.log('Subscribe to topic:', topic)
+        })
     })
-   }catch (error){
-    setConnectionStatus(false)
-    console.log('mqtt.connect error',error)
 
-}
-   
-try{
-    mqttClient.subscribe(topic, () => {
-      console.log("Subscribe to topic:", topic)
-    }) }catch(error)
-    {console.error(error)}
-    
-    mqttClient.stream.on('error', (err) => {
-      console.error(`Connection failed: ${err.message}`);
-      setConnectionStatus(false)
-      mqttClient.end();
-    });
-    
-    mqttClient.on('message', (topic, payload) => {
-    setMessages(payload.toString())
-         //temp = payload
-         //local= topic
-         console.log('Received Message:',+ messages + payload.toString(),"From:", + topic)
-         console.log('Received Message:',+ messages + payload)
-       // res.status(200).json({m})
-     })
-    
-    // mqttClient.on('close', () => {
-    //     console.log('MQTT desconectado')
-    //     setConnectionStatus(false)
-    // })
+    mqttClient.on('error', (error) => {
+        console.error('MQTT error:', error)
+        setConnectionStatus(false)
+    })
 
-    // mqttClient.on('offline', () => {
-    //     console.log('MQTT offline')
-    //     setConnectionStatus(false)
-    // })
+    mqttClient.on('close', () => {
+        console.log('MQTT desconectado')
+        setConnectionStatus(false)
+    })
+
+    mqttClient.on('offline', () => {
+        console.log('MQTT offline')
+        setConnectionStatus(false)
+    })
 }
 
+function disconnet() {
+
+    const client = clientRef.current
+
+    if (!client) {
+        console.log('Nenhum cliente MQTT conectado')
+        return
+    }
+
+    console.log('Desconectando MQTT...')
+
+    client.end(false, {}, () => {
+
+        console.log('MQTT desconectado')
+
+        setConnectionStatus(false)
+
+        clientRef.current = null
+    })
+}
 
 
-useEffect(() => {
-    connection();
-    mqtt_show();
-    }, [])
 
 // function startTime() {
 //     const timer = setInterval(() =>{
@@ -167,27 +176,6 @@ useEffect(() => {
     }, [])
   
 
-    
-async function disconnet() {
-
-    const client = clientRef.current
-
-    if (!client || typeof client.publish !== 'function') {
-        console.error('Cliente MQTT não está conectado')
-        return
-    }
-
-     client.on('close', () => {
-         console.log('MQTT desconectado')
-         setConnectionStatus(false)
-     })
-
-    // mqttClient.on('offline', () => {
-    //     console.log('MQTT offline')
-    //     setConnectionStatus(false)
-    // })
-  }
-    
 async function onLamp() {
 
     const client = clientRef.current
@@ -262,6 +250,19 @@ await Axios.get (('https://test-no-vercel.vercel.app/subscriber'),options)
         console.error(error);
     }
 }
+
+
+useEffect(() => {
+    connection();
+    mqtt_show();
+
+    return () => {
+        if (clientRef.current) {
+            clientRef.current.end()
+            clientRef.current = null
+        }
+    }
+    }, [])
 
 // const sendUpdate = useCallback(() => {
 //     client.current?.send(
