@@ -20,7 +20,7 @@ const topic5 = 'Sala'
    const payload = 'temp';
    const hosthive = "5d3be4977c10482289edf71c15f420fe.s1.eu.hivemq.cloud";
    const host = 'broker.mqtt-dashboard.com'
-   const port = '8084'
+   const port = '1883'
    const clientId = "cdbiot123";
   // const clientRef = useRef(null);
 
