@@ -1,0 +1,115 @@
+.battery-dashboard {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 1.5rem;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+.battery-dashboard__status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+  background: #f1f1f1;
+  color: #555;
+  margin-bottom: 1rem;
+}
+
+.battery-dashboard__status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #999;
+}
+
+.battery-dashboard__status--connected .battery-dashboard__status-dot {
+  background: #22c55e;
+}
+
+.battery-dashboard__status--connecting .battery-dashboard__status-dot {
+  background: #eab308;
+  animation: pulse 1.2s infinite;
+}
+
+.battery-dashboard__status--error .battery-dashboard__status-dot,
+.battery-dashboard__status--disconnected .battery-dashboard__status-dot {
+  background: #ef4444;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+.battery-dashboard__error {
+  background: #fee2e2;
+  color: #991b1b;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+.battery-dashboard__hint {
+  color: #777;
+  font-size: 0.9rem;
+}
+
+.battery-dashboard__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+
+.battery-card {
+  background: #fafafa;
+  border: 1px solid #eee;
+  border-radius: 12px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.battery-card--main {
+  grid-column: 1 / -1;
+  align-items: center;
+  padding: 1.5rem;
+}
+
+.battery-card__label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: #888;
+}
+
+.battery-card__value {
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: #111;
+}
+
+.battery-card--main .battery-card__value {
+  font-size: 2.75rem;
+}
+
+.battery-level--high { color: #16a34a; }
+.battery-level--medium { color: #ca8a04; }
+.battery-level--low { color: #dc2626; }
+
+.battery-card__badge {
+  font-size: 0.8rem;
+  color: #16a34a;
+  margin-top: 0.25rem;
+}
+
+.battery-dashboard__timestamp {
+  grid-column: 1 / -1;
+  text-align: center;
+  font-size: 0.75rem;
+  color: #999;
+  margin-top: 0.25rem;
+}
