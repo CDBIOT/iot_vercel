@@ -10,6 +10,7 @@ import Graphics from './Components/pages/Graphics';
 import RealTime from './Components/pages/RealTime'
 import Energy from './Components/pages/Energy';
 import MqttReact from './Components/pages/MqttReact';
+import Battery from './Components/pages/Battery';
 
 import BotPress from './Components/pages/BotPress';
 
@@ -29,6 +30,7 @@ return (
             <Route path="/Users"    element={<Users />} ></Route>
             <Route path='/RealTime' element={<RealTime />}></Route>
             <Route path='/MqttReact' element={<MqttReact />}></Route> 
+            <Route path='/Battery' element={<Battery />}></Route> 
             <Route path='/BotPress' element={<BotPress />}></Route> 
          </Routes>
     </Router>
