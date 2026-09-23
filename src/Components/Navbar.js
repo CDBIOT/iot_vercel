@@ -34,7 +34,7 @@ return(
             <Link to= "/MqttReact" > MqttReact </Link>
         </li>
         <li className={styles.item}>
-            <Link to= "/Dashboard" > Battery </Link>
+            <Link to= "/Dashboard" > Dashboard </Link>
         </li>
         <li className={styles.item}>
             <Link to= "/Schedule"> Schedule</Link>
