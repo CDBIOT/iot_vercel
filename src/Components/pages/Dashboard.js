@@ -1,5 +1,5 @@
 import React from 'react';
-import { Battery } from '../batteryTelemetry';
+import { Battery } from './batteryTelemetry';
 import './styles/BatteryDashboard.css';
 
 const STATUS_LABEL = {
