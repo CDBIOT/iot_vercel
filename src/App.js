@@ -10,7 +10,7 @@ import Graphics from './Components/pages/Graphics';
 import RealTime from './Components/pages/RealTime'
 import Energy from './Components/pages/Energy';
 import MqttReact from './Components/pages/MqttReact';
-import Battery from './Components/pages/Battery';
+import Dashboard from './Components/pages/Dashboard';
 
 import BotPress from './Components/pages/BotPress';
 
