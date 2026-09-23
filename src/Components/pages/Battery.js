@@ -16,7 +16,7 @@ import mqtt from 'mqtt';
  *   REACT_APP_HIVEMQ_PASSWORD
  *   REACT_APP_MQTT_TOPIC       padrão robot/battery/telemetry
  */
-export function Battery() {
+function Battery() {
   const [data, setData] = useState(null); // última leitura recebida
   const [status, setStatus] = useState('connecting'); // connecting | connected | error | disconnected
   const [error, setError] = useState(null);
@@ -103,3 +103,4 @@ export function Battery() {
 
   return { data, status, error, disconnect };
 }
+export default Battery
