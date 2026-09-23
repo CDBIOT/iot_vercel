@@ -1,6 +1,6 @@
 import React from 'react';
 import { Battery } from './batteryTelemetry';
-import './styles/BatteryDashboard.css';
+import '../styles/BatteryDashboard.css';
 
 const STATUS_LABEL = {
   connecting: 'Conectando ao HiveMQ...',
