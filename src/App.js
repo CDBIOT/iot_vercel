@@ -30,7 +30,7 @@ return (
             <Route path="/Users"    element={<Users />} ></Route>
             <Route path='/RealTime' element={<RealTime />}></Route>
             <Route path='/MqttReact' element={<MqttReact />}></Route> 
-            <Route path='/Battery' element={<Battery />}></Route> 
+            <Route path='/Dashboard' element={<Dashboard />}></Route> 
             <Route path='/BotPress' element={<BotPress />}></Route> 
          </Routes>
     </Router>
