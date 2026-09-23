@@ -1,5 +1,5 @@
 import React from 'react';
-import { useBatteryTelemetry } from '../hooks/useBatteryTelemetry';
+import { Battery } from '../hooks/useBatteryTelemetry';
 import './BatteryDashboard.css';
 
 const STATUS_LABEL = {
@@ -16,7 +16,7 @@ function batteryLevelClass(percentage) {
   return 'battery-level--high';
 }
 
-export default function BatteryDashboard() {
+export default function Dashboard() {
   const { data, status, error } = useBatteryTelemetry();
 
   return (
