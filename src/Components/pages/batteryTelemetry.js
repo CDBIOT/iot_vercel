@@ -9,6 +9,8 @@
  *   REACT_APP_HIVEMQ_PASSWORD
  *   REACT_APP_MQTT_TOPIC       padrão robot/battery/telemetry
  */
+import React from 'react';
+
 export function useBatteryTelemetry() {
   const [data, setData] = useState(null); // última leitura recebida
   const [status, setStatus] = useState('connecting'); // connecting | connected | error | disconnected
