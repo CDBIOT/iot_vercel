@@ -1,4 +1,4 @@
-* A conexão é aberta quando o componente que usa o hook monta (ex: ao abrir
+/* A conexão é aberta quando o componente que usa o hook monta (ex: ao abrir
  * o dashboard) e fechada quando desmonta. Não depende de nenhum backend —
  * o próprio navegador vira um cliente MQTT.
  *
