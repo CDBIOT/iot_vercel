@@ -13,7 +13,7 @@ import React from 'react';
 import { useState, useRef, useEffect, useCallback } from 'react';
 import mqtt from 'mqtt';
 
-export function usebatteryTelemetry() {
+export function useBatteryTelemetry() {
   const [data, setData] = useState(null); // última leitura recebida
   const [status, setStatus] = useState('connecting'); // connecting | connected | error | disconnected
   const [error, setError] = useState(null);
