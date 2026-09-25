@@ -17,7 +17,7 @@ function batteryLevelClass(percentage) {
 }
 
 export default function Dashboard() {
-  const { data, status, error } = batteryTelemetry();
+  const { data, status, error } = usebatteryTelemetry();
 
   return (
     <div className="battery-dashboard">
