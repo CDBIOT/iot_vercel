@@ -10,6 +10,8 @@
  *   REACT_APP_MQTT_TOPIC       padrão robot/battery/telemetry
  */
 import React from 'react';
+import { useState, useRef, useEffect, useCallback } from 'react';
+import mqtt from 'mqtt';
 
 export function useBatteryTelemetry() {
   const [data, setData] = useState(null); // última leitura recebida
