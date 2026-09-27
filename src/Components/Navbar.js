@@ -40,6 +40,12 @@ return(
             <Link to= "/Schedule"> Schedule</Link>
         </li>
         <li className={styles.item}>
+            <Link to= "/RobotMonitor"> RobotMonitor</Link>
+        </li>
+       <li className={styles.item}>
+            <Link to= "/Ecar"> Ecar</Link>
+        </li>
+        <li className={styles.item}>
             <Link to= "/Users"> Users</Link>
         </li>
         <li className={styles.item}>
