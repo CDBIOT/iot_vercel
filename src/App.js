@@ -11,7 +11,8 @@ import RealTime from './Components/pages/RealTime'
 import Energy from './Components/pages/Energy';
 import MqttReact from './Components/pages/MqttReact';
 import Dashboard from './Components/pages/Dashboard';
-
+import RobotMonitor from './Components/pages/RobotMonitor';
+import Ecar from './Components/pages/Ecar';
 import BotPress from './Components/pages/BotPress';
 
 
@@ -27,6 +28,8 @@ return (
             <Route path="/Energy"   element={<Energy />}></Route>
             <Route path='/Graphics' element={<Graphics />}></Route>
             <Route path="/Schedule" element={<Schedule />}></Route>
+            <Route path="/RobotMonitor" element={<RobotMonitor />}></Route>
+            <Route path="/Ecar" element={<Ecar />}></Route>
             <Route path="/Users"    element={<Users />} ></Route>
             <Route path='/RealTime' element={<RealTime />}></Route>
             <Route path='/MqttReact' element={<MqttReact />}></Route> 
