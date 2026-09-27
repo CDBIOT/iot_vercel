@@ -309,8 +309,8 @@ export default function RobotMonitor() {
 
   return (
     <div className="container">
-      <audio ref={hoverSoundRef} src="./hover.mp3" />
-      <audio ref={clickSoundRef} src="./mario.mp3" />
+      <audio ref={hoverSoundRef} src="hover.mp3" />
+      <audio ref={clickSoundRef} src="mario.mp3" />
 
       <a href="/">Home</a>
       <div className="header-row">
