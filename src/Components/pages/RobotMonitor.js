@@ -15,7 +15,7 @@ const JOYSTICK_THROTTLE_MS = 150;
  * Adjust these strings to match your firmware.
  */
 const MQTT_CONFIG = {
-  brokerUrl: 'ws://192.168.1.100:9001',
+  brokerUrl: 'wss://broker.hivemq.com:8884',
   options: {
     clientId: `dashboard_${Math.random().toString(16).slice(2, 10)}`,
     // username: 'user',
