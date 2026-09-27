@@ -310,7 +310,7 @@ export default function Ecar() {
   return (
     <div className="container">
       <audio ref={hoverSoundRef} src="hover.mp3" />
-      <audio ref={clickSoundRef} src="click.mp3" />
+      <audio ref={clickSoundRef} src="mario.mp3" />
 
       <a href="/">Home</a>
       <div className="header-row">
