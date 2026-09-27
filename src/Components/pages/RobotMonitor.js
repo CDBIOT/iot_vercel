@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import mqtt from 'mqtt';
-import '../styles../RobotMonitor.css';
+import '../../styles/RobotMonitor.css';
 
 const TOTAL_SEGMENTS = 12;
 const JOYSTICK_THROTTLE_MS = 150;
