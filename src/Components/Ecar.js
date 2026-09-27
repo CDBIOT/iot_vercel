@@ -186,7 +186,7 @@ function Joystick({ onMove, onEnd, size = 140 }) {
   );
 }
 
-export default function RobotMonitor() {
+export default function Ecar() {
   const [voltage, setVoltage] = useState(null);
   const [percent, setPercent] = useState(0);
   const [temperature, setTemperature] = useState(null);
