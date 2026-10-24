@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import mqtt from 'mqtt';
 import styles from '../../styles/RobotMonitor.css';
+import video from '../CameraRobot.js';
 
 const TOTAL_SEGMENTS = 12;
 const JOYSTICK_THROTTLE_MS = 150;
