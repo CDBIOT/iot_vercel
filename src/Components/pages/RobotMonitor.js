@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import mqtt from 'mqtt';
-
-import styles from "../../styles/RobotMonitor.css"
+import './RobotMonitor.css';
 
 const TOTAL_SEGMENTS = 12;
 const JOYSTICK_THROTTLE_MS = 150;
@@ -56,8 +55,8 @@ const MQTT_CONFIG = {
   },
 };
 
-// Nomes das 10 juntas: 0-4 perna direita, 5-9 perna esquerda
-const JOINT_NAMES = ['Giro quadril', 'Quadril lateral', 'Quadril frente', 'Joelho', 'Tornozelo'];
+// Nomes das 10 juntas: 0-4 lado direito, 5-9 lado esquerdo (3 da perna + 2 do braço)
+const JOINT_NAMES = ['Quadril', 'Coxa', 'Perna', 'Ombro frente/trás', 'Ombro lateral'];
 const SERVO_LABELS = [
   ...JOINT_NAMES.map((n) => `D · ${n}`),
   ...JOINT_NAMES.map((n) => `E · ${n}`),
@@ -211,7 +210,7 @@ export default function RobotMonitor() {
   const [pwmValue, setPwmValue] = useState('--');
   const [sliderValue, setSliderValue] = useState(50);
   const [connected, setConnected] = useState(false);
-  const [imu, setImu] = useState({ pitch: 0, roll: 0 });
+  const [imu, setImu] = useState(null); // null = ainda não chegou nenhuma mensagem do ESP32
   const [servoAngles, setServoAngles] = useState(Array(10).fill(90)); // valores dos sliders de calibração
   const [balanceOn, setBalanceOn] = useState(false);
   const lastServoSentRef = useRef(0);
@@ -296,7 +295,7 @@ export default function RobotMonitor() {
           if (data?.pwm_value != null) setPwmValue(data.pwm_value);
           break;
         case MQTT_CONFIG.topics.imu:
-          if (data?.pitch != null) setImu({ pitch: data.pitch, roll: data.roll });
+          if (data?.pitch != null) setImu({ pitch: data.pitch, roll: data.roll, ok: data.ok !== false });
           break;
         default:
           break;
@@ -486,8 +485,14 @@ export default function RobotMonitor() {
             <th colSpan={4}>IMU / Postura</th>
           </tr>
           <tr>
-            <td>Pitch: <b>{Number(imu.pitch).toFixed(1)}°</b></td>
-            <td>Roll: <b>{Number(imu.roll).toFixed(1)}°</b></td>
+            <td>
+              {imu === null
+                ? 'Aguardando dados do MPU…'
+                : !imu.ok
+                  ? 'MPU não detectado'
+                  : <>Pitch: <b>{Number(imu.pitch).toFixed(1)}°</b></>}
+            </td>
+            <td>{imu?.ok ? <>Roll: <b>{Number(imu.roll).toFixed(1)}°</b></> : '--'}</td>
             <td><button type="button" onClick={zeroImu}>Zerar nível</button></td>
             <td>
               <button type="button" onClick={toggleBalance}>
