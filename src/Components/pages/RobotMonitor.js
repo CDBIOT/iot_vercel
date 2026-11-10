@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import mqtt from 'mqtt';
-import styles from '../../styles/RobotMonitor.css';
+import './RobotMonitor.css';
 
 const TOTAL_SEGMENTS = 12;
 const JOYSTICK_THROTTLE_MS = 150;
@@ -15,7 +15,7 @@ const JOYSTICK_THROTTLE_MS = 150;
  * Adjust these strings to match your firmware.
  */
 const MQTT_CONFIG = {
-  brokerUrl: 'wss://broker.hivemq.com:8884/mqtt',
+  brokerUrl: 'ws://192.168.1.100:9001',
   options: {
     clientId: `dashboard_${Math.random().toString(16).slice(2, 10)}`,
     // username: 'user',
@@ -27,7 +27,9 @@ const MQTT_CONFIG = {
     temperature: 'robot/temperature', // payload: {"temperature":34.2}
     direction: 'robot/direction',     // payload: {"direction":"forward"}
     motor: 'robot/motor',             // payload: {"motor":"on"}
-    pwm: 'robot/pwm',                 // payload: {"pwm_value":50}
+    pwm: 'robot/pwm',                 // payload: {"pwm_value":50} (velocidade da marcha, %)
+    imu: 'robot/imu',                 // payload: {"pitch":1.2,"roll":-0.4}
+    servos: 'robot/servos',           // payload: [90,90,90,90,90,90,90,90,90,90]
   },
   commands: {
     motorOn: 'robot/cmd/motor_on',
@@ -44,8 +46,21 @@ const MQTT_CONFIG = {
     slider: 'robot/cmd/slider',       // payload: "50"
     drive: 'robot/cmd/drive',         // payload: {"angle":90,"force":0.8}
     requestTemperature: 'robot/cmd/temperature', // LER button
+    stop: 'robot/cmd/stop',           // para de andar e fica em pé
+    relax: 'robot/cmd/relax',         // solta todos os servos imediatamente
+    pose: 'robot/cmd/pose',           // "stand" | "crouch"
+    balance: 'robot/cmd/balance',     // "on" | "off"
+    imuZero: 'robot/cmd/imu_zero',    // define a posição atual como nivelada
+    servo: 'robot/cmd/servo',         // {"id":3,"angle":95} calibração ao vivo
   },
 };
+
+// Nomes das 10 juntas: 0-4 perna direita, 5-9 perna esquerda
+const JOINT_NAMES = ['Giro quadril', 'Quadril lateral', 'Quadril frente', 'Joelho', 'Tornozelo'];
+const SERVO_LABELS = [
+  ...JOINT_NAMES.map((n) => `D · ${n}`),
+  ...JOINT_NAMES.map((n) => `E · ${n}`),
+];
 
 /** Circular gauge, replaces the old Google Charts gauge */
 function CircularGauge({ value, min = 0, max = 100, label, unit = '', size = 160 }) {
@@ -194,15 +209,40 @@ export default function RobotMonitor() {
   const [motorStatus, setMotorStatus] = useState('--');
   const [pwmValue, setPwmValue] = useState('--');
   const [sliderValue, setSliderValue] = useState(50);
-  const [leftRightToggle, setLeftRightToggle] = useState('NO');
   const [connected, setConnected] = useState(false);
-  const [cameraUrl, setCameraUrl] = useState('');
-  const [cameraEnabled, setCameraEnabled] = useState(false);
-  const [cameraError, setCameraError] = useState(false);
+  const [imu, setImu] = useState({ pitch: 0, roll: 0 });
+  const [servoAngles, setServoAngles] = useState(Array(10).fill(90)); // valores dos sliders de calibração
+  const [balanceOn, setBalanceOn] = useState(false);
+  const lastServoSentRef = useRef(0);
 
   const hoverSoundRef = useRef(null);
   const clickSoundRef = useRef(null);
   const clientRef = useRef(null);
+  const audioUnlockedRef = useRef(false);
+
+  // Browsers only allow audio.play() in direct response to a "real" user
+  // gesture (click/keydown/touch) — a mouseenter (hover) does NOT count,
+  // so the hover sound gets silently blocked until the audio element has
+  // been "unlocked" by at least one successful play() from a real gesture.
+  // This listens for the page's first click and primes both <audio> tags.
+  useEffect(() => {
+    const unlock = () => {
+      if (audioUnlockedRef.current) return;
+      [hoverSoundRef.current, clickSoundRef.current].forEach((el) => {
+        if (!el) return;
+        el.play()
+          .then(() => {
+            el.pause();
+            el.currentTime = 0;
+          })
+          .catch((err) => console.warn('Audio unlock failed:', err));
+      });
+      audioUnlockedRef.current = true;
+      window.removeEventListener('click', unlock);
+    };
+    window.addEventListener('click', unlock);
+    return () => window.removeEventListener('click', unlock);
+  }, []);
 
   /** Publish helper: no-ops silently if the broker isn't connected yet */
   const publish = useCallback((topic, payload = '') => {
@@ -254,6 +294,9 @@ export default function RobotMonitor() {
         case MQTT_CONFIG.topics.pwm:
           if (data?.pwm_value != null) setPwmValue(data.pwm_value);
           break;
+        case MQTT_CONFIG.topics.imu:
+          if (data?.pitch != null) setImu({ pitch: data.pitch, roll: data.roll });
+          break;
         default:
           break;
       }
@@ -268,13 +311,17 @@ export default function RobotMonitor() {
   const playHover = () => {
     if (hoverSoundRef.current) {
       hoverSoundRef.current.currentTime = 0;
-      hoverSoundRef.current.play().catch(() => {});
+      // If this rejects with NotAllowedError, the element hasn't been
+      // unlocked yet (user hasn't clicked anywhere on the page this session).
+      hoverSoundRef.current.play().catch((err) => console.warn('hover sound blocked:', err));
     }
   };
   const playClick = () => {
     if (clickSoundRef.current) {
       clickSoundRef.current.currentTime = 0;
-      clickSoundRef.current.play().catch(() => {});
+      // If this rejects with a network/404-style error, check that
+      // /public/click.mp3 exists and was actually deployed to Vercel.
+      clickSoundRef.current.play().catch((err) => console.warn('click sound blocked:', err));
     }
   };
 
@@ -286,11 +333,29 @@ export default function RobotMonitor() {
   const motorOff = () => publish(MQTT_CONFIG.commands.motorOff);
   const forward = () => publish(MQTT_CONFIG.commands.forward);
   const reverse = () => publish(MQTT_CONFIG.commands.reverse);
-  const motorLeftRight = () => {
-    const topic = leftRightToggle === 'NO' ? MQTT_CONFIG.commands.left : MQTT_CONFIG.commands.right;
-    setLeftRightToggle((t) => (t === 'NO' ? 'YES' : 'NO'));
-    publish(topic);
+  const turnLeft = () => publish(MQTT_CONFIG.commands.left);
+  const turnRight = () => publish(MQTT_CONFIG.commands.right);
+  const stopWalking = () => publish(MQTT_CONFIG.commands.stop);
+  const relaxServos = () => publish(MQTT_CONFIG.commands.relax);
+  const setPose = (pose) => {
+    setServoAngles(Array(10).fill(90));   // volta os sliders de calibração ao centro
+    publish(MQTT_CONFIG.commands.pose, pose);
   };
+  const toggleBalance = () => {
+    const next = !balanceOn;
+    setBalanceOn(next);
+    publish(MQTT_CONFIG.commands.balance, next ? 'on' : 'off');
+  };
+  const zeroImu = () => publish(MQTT_CONFIG.commands.imuZero);
+  const updateServo = (id, angle) => {
+    setServoAngles((prev) => prev.map((a, i) => (i === id ? angle : a)));
+    const now = Date.now();
+    if (now - lastServoSentRef.current > 80) {   // limita a taxa de mensagens
+      lastServoSentRef.current = now;
+      publish(MQTT_CONFIG.commands.servo, { id, angle });
+    }
+  };
+  const commitServo = (id, angle) => publish(MQTT_CONFIG.commands.servo, { id, angle }); // valor final
   const pwmOn = () => publish(MQTT_CONFIG.commands.pwmOn);
   const pwmOff = () => publish(MQTT_CONFIG.commands.pwmOff);
   const pwm25 = () => publish(MQTT_CONFIG.commands.pwm25);
@@ -312,8 +377,16 @@ export default function RobotMonitor() {
 
   return (
     <div className="container">
-      <audio ref={hoverSoundRef} src="hover.mp3" />
-      <audio ref={clickSoundRef} src="mario.mp3" />
+      {/*
+        Absolute paths (leading "/") so these resolve correctly from any
+        route on Vercel. The files themselves must live in your project's
+        /public folder: public/hover.mp3 and public/click.mp3 — Vite/CRA
+        copy everything in /public to the site root at build time.
+        Vercel's filesystem is case-sensitive (unlike Windows/macOS), so
+        double-check the filenames match exactly, including extension case.
+      */}
+      <audio ref={hoverSoundRef} src="/hover.mp3" preload="auto" />
+      <audio ref={clickSoundRef} src="/click.mp3" preload="auto" />
 
       <a href="/">Home</a>
       <div className="header-row">
@@ -323,7 +396,6 @@ export default function RobotMonitor() {
         </span>
       </div>
 
-   
       <table>
         <thead>
           <tr>
@@ -382,12 +454,14 @@ export default function RobotMonitor() {
             <td><button type="button" onClick={motorOff}>OFF</button></td>
           </tr>
           <tr>
-            <td><button type="button" onClick={motorLeftRight}>Left</button></td>
+            <td><button type="button" onClick={turnLeft}>Left</button></td>
             <td><button type="button" onClick={forward}>F</button></td>
-            <td><button type="button" onClick={motorLeftRight}>Right</button></td>
+            <td><button type="button" onClick={turnRight}>Right</button></td>
           </tr>
           <tr>
             <td><button type="button" onClick={reverse}>R</button></td>
+            <td><button type="button" onClick={stopWalking}>STOP</button></td>
+            <td><button type="button" onClick={relaxServos}>RELAX</button></td>
           </tr>
           <tr>
             <td>
@@ -402,6 +476,52 @@ export default function RobotMonitor() {
             </td>
             <td><label>Value: {sliderValue}</label></td>
           </tr>
+        </tbody>
+      </table>
+
+      <table>
+        <tbody>
+          <tr>
+            <th colSpan={4}>IMU / Postura</th>
+          </tr>
+          <tr>
+            <td>Pitch: <b>{Number(imu.pitch).toFixed(1)}°</b></td>
+            <td>Roll: <b>{Number(imu.roll).toFixed(1)}°</b></td>
+            <td><button type="button" onClick={zeroImu}>Zerar nível</button></td>
+            <td>
+              <button type="button" onClick={toggleBalance}>
+                Equilíbrio: {balanceOn ? 'ON' : 'OFF'}
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td colSpan={2}><button type="button" onClick={() => setPose('stand')}>Em pé</button></td>
+            <td colSpan={2}><button type="button" onClick={() => setPose('crouch')}>Agachar</button></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <table>
+        <tbody>
+          <tr><th colSpan={2}>Calibração dos servos (ao vivo, 90° = centro)</th></tr>
+          {SERVO_LABELS.map((label, i) => (
+            <tr key={i}>
+              <td>{label}</td>
+              <td>
+                <input
+                  type="range"
+                  min="0"
+                  max="180"
+                  value={servoAngles[i]}
+                  className="slider"
+                  onChange={(e) => updateServo(i, Number(e.target.value))}
+                  onMouseUp={(e) => commitServo(i, Number(e.target.value))}
+                  onTouchEnd={(e) => commitServo(i, Number(e.target.value))}
+                />
+                {' '}{servoAngles[i]}°
+              </td>
+            </tr>
+          ))}
         </tbody>
       </table>
 
